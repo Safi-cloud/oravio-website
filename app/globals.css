@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #16283a;
+  --navy: #1c4a78;
+  --horizon: #2864a0;
+  --teal: #1d6e7d;
+  --emerald: #2f9e6e;
+  --sky: #f6fafd;
+  --sky-deep: #e4eef8;
+  --paper: #ffffff;
+  --slate: #4c6478;
+  --slate-light: #54697c;
+  --line: #dde8f2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--sky);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+.font-mono-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--horizon), var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-brand {
+  background: linear-gradient(120deg, var(--horizon), var(--teal));
+}
+
+.bg-gradient-sky {
+  background: linear-gradient(180deg, var(--sky-deep) 0%, var(--sky) 55%, var(--sky) 100%);
+}
+
+.bg-gradient-dusk {
+  background: linear-gradient(160deg, #0f2841 0%, #16365a 55%, #1c4a78 100%);
+}
+
+/* Zachte, wolkachtige achtergrondvormen — het signatuur-effect van de
+   site. Gebruikt op een aantal secties als sfeervolle, atmosferische
+   laag achter de inhoud, nooit als iets dat de leesbaarheid in de weg
+   zit. */
+.cloud-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cloud-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cloud-drift {
+    animation: cloud-drift 22s ease-in-out infinite;
+  }
+  .cloud-drift-slow {
+    animation: cloud-drift 32s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes cloud-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(3%, -4%) scale(1.05);
+  }
+}
+
+@keyframes menu-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-node {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-node {
+  animation: float-node 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
