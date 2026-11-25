@@ -8,6 +8,11 @@ const FOOTER_LINKS = {
     { href: "/faq", label: "Veelgestelde vragen" },
     { href: "/contact", label: "Demo aanvragen" },
   ],
+  Diensten: [
+    { href: "/websites", label: "Websites op maat" },
+    { href: "/websites#werkwijze", label: "Werkwijze" },
+    { href: "/contact?onderwerp=website", label: "Gratis ontwerpvoorstel" },
+  ],
   Bedrijf: [
     { href: "/over-ons", label: "Over ons" },
     { href: "/contact", label: "Contact" },
@@ -18,7 +23,7 @@ export default function SiteFooter() {
   return (
     <footer className="bg-gradient-dusk border-t border-[var(--line)] text-[#c4d2db]">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
               <OravioMark className="h-7 w-7" />

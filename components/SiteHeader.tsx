@@ -7,6 +7,7 @@ import OravioMark from "./OravioMark";
 
 const NAV_LINKS = [
   { href: "/platform", label: "Platform" },
+  { href: "/websites", label: "Websites" },
   { href: "/branches", label: "Branches" },
   { href: "/faq", label: "FAQ" },
   { href: "/over-ons", label: "Over ons" },

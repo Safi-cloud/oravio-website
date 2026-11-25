@@ -4,17 +4,18 @@ import { useState } from "react";
 
 const CONTACT_EMAIL = "contact@oravio.nl";
 
-export default function ContactForm() {
+export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { initialTopic?: string }) {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [topic, setTopic] = useState(initialTopic);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Kennismaking — ${company || name}`);
+    const subject = encodeURIComponent(`${topic} — ${company || name}`);
     const body = encodeURIComponent(
-      `Naam: ${name}\nOnderneming: ${company}\nE-mailadres: ${email}\n\nBericht:\n${message}`
+      `Onderwerp: ${topic}\nNaam: ${name}\nOnderneming: ${company}\nE-mailadres: ${email}\n\nBericht:\n${message}`
     );
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   }
@@ -69,6 +70,18 @@ export default function ContactForm() {
               />
             </label>
           </div>
+          <label className="block text-sm font-medium text-[var(--ink)]">
+            Waar gaat het over?
+            <select
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              className="mt-1.5 w-full rounded-lg border border-[var(--line)] bg-white px-4 py-2.5 text-sm focus:border-[var(--teal)] focus:outline-none focus:ring-2 focus:ring-[var(--teal)]/25"
+            >
+              <option>Het Oravio-platform</option>
+              <option>Een website op maat</option>
+              <option>Iets anders</option>
+            </select>
+          </label>
           <label className="block text-sm font-medium text-[var(--ink)]">
             E-mailadres
             <input

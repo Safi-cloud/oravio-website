@@ -218,7 +218,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:px-10 md:py-28">
+      <section className="border-t border-[var(--line)] bg-[var(--paper)] px-6 py-20 md:px-10 md:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+          <div>
+            <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Oravio Studio</p>
+            <h2 className="font-display mt-4 text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-4xl">
+              Ook voor een nieuwe website.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--slate)]">
+              We ontwerpen en bouwen ook professionele websites op maat, met dezelfde moderne techniek als
+              het platform. Je ziet eerst gratis een ontwerpvoorstel en demovideo, en daarna houden wij je site
+              op jaarbasis snel, veilig en actueel.
+            </p>
+            <Link
+              href="/websites"
+              className="bg-gradient-brand mt-8 inline-flex rounded-full px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#1d6e7d]/20 transition-transform hover:scale-[1.02]"
+            >
+              Bekijk websites op maat
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { k: "01", t: "Gratis analyse", b: "Snelheid, mobiel, beveiliging en vindbaarheid van je huidige site." },
+              { k: "02", t: "Ontwerpvoorstel", b: "Je nieuwe site in beeld, inclusief demovideo." },
+              { k: "03", t: "Vaste prijs", b: "Bouw en livegang zonder verrassingen achteraf." },
+              { k: "04", t: "Jaarlijks beheer", b: "Hosting, updates en kleine wijzigingen geregeld." },
+            ].map((item, i) => (
+              <ScrollReveal key={item.k} delay={i * 70}>
+                <div className="h-full rounded-2xl border border-[var(--line)] bg-[var(--sky)] p-6">
+                  <span className="font-mono-label text-xs text-[var(--slate-light)]">{item.k}</span>
+                  <h3 className="font-display mt-2 text-base font-semibold text-[var(--ink)]">{item.t}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--slate)]">{item.b}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--line)] px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Traject</p>
