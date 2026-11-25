@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.0 (25 november 2026)
+
+- Persoonlijke voorstelpagina's op /voorstel/<code> met de demovideo, het voorgestelde pakket en een vervaldatum. Na de vervaldatum toont de pagina "verlopen" en is de video niet meer op te vragen.
+- Video's staan in private/demos en worden alleen via een geldige link gestreamd (niet te downloaden via de speler).
+- Mail naar contact@oravio.nl als de klant het voorstel opent, de video helemaal bekijkt of op "Ja, ik wil dit" klikt.
+- Voorstellen beheren in lib/voorstellen.ts. Voorstelpagina's worden niet door Google geïndexeerd.
+
+## 0.5.4 (25 november 2026)
+
+- Plus: "Klaar voor AI-zoekmachines zoals ChatGPT" vervangen door het concrete "Vraag-en-antwoordblokken per dienst, met FAQ-schema voor Google".
+
 ## 0.5.3 (25 november 2026)
 
 - KvK-nummer 67717187 in de footer van elke pagina en op de contactpagina.

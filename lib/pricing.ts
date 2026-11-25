@@ -59,7 +59,7 @@ export const WEBSITE_PACKAGES: WebsitePackage[] = [
       "Aparte pagina per dienst én per werkgebied",
       "Projecten, nieuws of portfolio",
       "Eén extra taal inbegrepen",
-      "Klaar voor AI-zoekmachines zoals ChatGPT",
+      "Vraag-en-antwoordblokken per dienst, met FAQ-schema voor Google",
       "Google Bedrijfsprofiel volledig ingericht",
       "3 correctierondes, live in 3 tot 4 weken",
     ],
