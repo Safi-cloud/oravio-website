@@ -112,6 +112,25 @@ body {
   animation: float-node 7s ease-in-out infinite;
 }
 
+/* Bevestiging contactformulier: ring en vinkje tekenen zichzelf. */
+.sent-ring {
+  stroke-dasharray: 158;
+  stroke-dashoffset: 158;
+  animation: sent-draw 0.9s cubic-bezier(0.6, 0.1, 0.2, 1) forwards;
+}
+
+.sent-check {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: sent-draw 0.5s 0.7s cubic-bezier(0.6, 0.1, 0.2, 1) forwards;
+}
+
+@keyframes sent-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

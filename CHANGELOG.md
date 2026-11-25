@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 (25 november 2026)
+
+- Nieuwe bevestiging na het versturen van het contactformulier: geanimeerd vinkje, samenvatting van het bericht, "Wat er nu gebeurt" in drie stappen en knoppen naar de juiste vervolgpagina.
+
 ## 0.4.0 (25 november 2026)
 
 - Contactformulier verstuurt nu via Resend (`/api/contact`) in plaats van via het mailprogramma van de bezoeker.
