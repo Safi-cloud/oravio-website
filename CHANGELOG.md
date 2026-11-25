@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.6.5 (25 november 2026)
+
+- Voorstel Gebr. de Graaf: speciale prijs €499 voor pakket Zakelijk.
+
+## 0.6.4 (25 november 2026)
+
+- Voorstelpagina: nieuwe prijsonthulling "Wat u in de video ziet, is pakket Zakelijk", met de normale prijs die wordt doorgestreept en een teller die afloopt naar de aanbiedingsprijs, plus besparing en kortingspercentage.
+- "Wat u krijgt" toont nu eerst de onderdelen uit Zakelijk, daarna de basis.
+- Vriendenprijs naar €499. Per voorstel instelbaar of de klant met "u" of "je" wordt aangesproken.
+
+## 0.6.3 (25 november 2026)
+
+- Na versturen van het contactformulier of een voorstelreactie scrolt de pagina vanzelf naar de bevestiging, zodat die op mobiel bovenaan in beeld staat.
+
 ## 0.6.2 (25 november 2026)
 
 - Voorstelpagina toont eerst wat in de demo zit: de basis plus een gemarkeerd blok "Extra uit pakket Zakelijk".

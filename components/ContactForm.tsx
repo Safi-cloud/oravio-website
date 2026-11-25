@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { COMPANY } from "@/lib/company";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CONTACT_EMAIL = "contact@oravio.nl";
 
@@ -16,6 +16,17 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
   const [website, setWebsite] = useState(""); // honeypot, onzichtbaar voor mensen
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorText, setErrorText] = useState("");
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Na versturen: de bevestiging netjes in beeld scrollen (vooral op mobiel staat het formulier laag).
+  useEffect(() => {
+    if (status !== "sent") return;
+    const el = panelRef.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const top = el.getBoundingClientRect().top + window.scrollY - 88;
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  }, [status]);
 
   function mailtoHref() {
     const subject = encodeURIComponent(`${topic} — ${company || name}`);
@@ -101,7 +112,7 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
         </div>
 
         {status === "sent" ? (
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1d6e7d] via-[#2864a0] to-[#2f9e6e] p-[1.5px] shadow-[0_40px_80px_-40px_rgba(28,74,120,0.45)]">
+          <div ref={panelRef} className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1d6e7d] via-[#2864a0] to-[#2f9e6e] p-[1.5px] shadow-[0_40px_80px_-40px_rgba(28,74,120,0.45)]">
             <div className="relative h-full overflow-hidden rounded-[calc(1.5rem-1.5px)] bg-[var(--paper)] p-8 md:p-10">
               <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#d7ece4] opacity-70 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-28 -left-20 h-64 w-64 rounded-full bg-[#cfe3f7] opacity-70 blur-3xl" />

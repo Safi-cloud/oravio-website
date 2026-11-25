@@ -79,6 +79,7 @@ export default async function VoorstelPage({ params }: { params: Promise<{ code:
       prijs={v.prijs}
       normaal={v.normaal}
       toelichting={v.toelichting}
+      aanspreken={v.aanspreken ?? "u"}
     />
   );
 }

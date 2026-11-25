@@ -20,6 +20,7 @@ export type Voorstel = {
   prijs: number;
   normaal: number; // prijs van het hogere pakket
   toelichting: string;
+  aanspreken?: "u" | "je"; // standaard "u"
 };
 
 export const VOORSTELLEN: Voorstel[] = [
@@ -29,7 +30,7 @@ export const VOORSTELLEN: Voorstel[] = [
     sub: "Pedicurepraktijk in 's-Hertogenbosch",
     video: "de-gelukkige-voet.mp4",
     geldigTot: "2026-11-30T23:59:00+01:00",
-    demoLabel: "Website Start + extra's uit Zakelijk",
+    demoLabel: "Website Zakelijk",
     basis: [
       "Eén overzichtelijke pagina met al uw behandelingen en prijzen",
       "Ontwerp in uw eigen stijl, perfect op telefoon",
@@ -44,7 +45,7 @@ export const VOORSTELLEN: Voorstel[] = [
     ],
     extraUit: "Zakelijk",
     aanbodLabel: "Introductieaanbod",
-    betaalt: "U betaalt het Start-tarief en krijgt alles wat u in de video ziet",
+    betaalt: "Pakket Zakelijk, voor het tarief van pakket Start",
     prijs: 399,
     normaal: 995,
     toelichting: "Wilt u later ook een eigen pagina per behandeling, dan betaalt u alleen het verschil.",
@@ -55,7 +56,7 @@ export const VOORSTELLEN: Voorstel[] = [
     sub: "Schilderwerken en Glashandel",
     video: "gebr-de-graaf.mp4",
     geldigTot: "2026-11-30T23:59:00+01:00",
-    demoLabel: "Website Start + extra's uit Zakelijk",
+    demoLabel: "Website Zakelijk",
     basis: [
       "Eén overzichtelijke pagina met al uw diensten",
       "Ontwerp in uw eigen stijl, perfect op telefoon",
@@ -70,9 +71,9 @@ export const VOORSTELLEN: Voorstel[] = [
       "Uw oude pagina's doorgestuurd, u houdt uw plek in Google",
     ],
     extraUit: "Zakelijk",
-    aanbodLabel: "Introductieaanbod",
-    betaalt: "U betaalt het Start-tarief en krijgt alles wat u in de video ziet",
-    prijs: 399,
+    aanbodLabel: "Speciale prijs",
+    betaalt: "Pakket Zakelijk, voor een speciale prijs",
+    prijs: 499,
     normaal: 995,
     toelichting: "Wilt u later een eigen pagina per dienst, dan betaalt u alleen het verschil.",
   },
@@ -82,7 +83,7 @@ export const VOORSTELLEN: Voorstel[] = [
     sub: "Eén site, drie voordeuren",
     video: "bjj-capoeira.mp4",
     geldigTot: "2026-11-30T23:59:00+01:00",
-    demoLabel: "Website Start + extra's uit Zakelijk",
+    demoLabel: "Website Zakelijk",
     basis: [
       "Eén pagina voor BJJ, capoeira en kids",
       "Ontwerp in jouw stijl, perfect op telefoon",
@@ -98,8 +99,9 @@ export const VOORSTELLEN: Voorstel[] = [
     ],
     extraUit: "Zakelijk",
     aanbodLabel: "Vriendenprijs",
-    betaalt: "Je betaalt een vriendenprijs en krijgt alles wat je in de video ziet",
-    prijs: 500,
+    betaalt: "Pakket Zakelijk, voor een vriendenprijs",
+    prijs: 499,
+    aanspreken: "je",
     normaal: 995,
     toelichting: "Daarnaast jaarlijks beheer, zodat je site snel, veilig en actueel blijft.",
   },
