@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.2 (25 november 2026)
+
+- Spamval in het contactformulier hernoemd. Het oude veld heette "Website" en kon door automatisch invullen van de browser (Safari, wachtwoordmanagers) gevuld worden, waardoor echte berichten stil werden genegeerd. Genegeerde berichten worden nu gelogd.
+
 ## 0.4.1 (25 november 2026)
 
 - Nieuwe bevestiging na het versturen van het contactformulier: geanimeerd vinkje, samenvatting van het bericht, "Wat er nu gebeurt" in drie stappen en knoppen naar de juiste vervolgpagina.

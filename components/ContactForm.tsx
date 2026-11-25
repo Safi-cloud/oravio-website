@@ -32,7 +32,7 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, company, email, message, topic, website }),
+        body: JSON.stringify({ name, company, email, message, topic, hp_controle: website }),
       });
       if (res.ok) {
         setStatus("sent");
@@ -227,8 +227,17 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
             </label>
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
               <label>
-                Website
-                <input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+                Niet invullen
+                <input
+                  type="text"
+                  name="hp_controle"
+                  tabIndex={-1}
+                  autoComplete="one-time-code"
+                  data-1p-ignore
+                  data-lpignore="true"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
               </label>
             </div>
             {status === "error" && (

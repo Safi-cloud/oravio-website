@@ -50,7 +50,8 @@ export async function POST(request: Request) {
 
   // Honeypot: dit veld is onzichtbaar voor mensen. Is het ingevuld, dan is
   // het vrijwel zeker een bot. We doen alsof het gelukt is.
-  if (clean(body.website, 200)) {
+  if (clean(body.hp_controle, 200)) {
+    console.warn("[contact] honeypot gevuld, bericht genegeerd");
     return NextResponse.json({ ok: true });
   }
 
