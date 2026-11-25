@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.5.3 (25 november 2026)
+
+- KvK-nummer 67717187 in de footer van elke pagina en op de contactpagina.
+
+## 0.5.2 (25 november 2026)
+
+- WhatsApp-knop standaard in elk pakket; WhatsApp Business inrichten als extra (€75); WhatsApp-automatisering onder maatwerk.
+- Rekentool op /prijzen: kies website, beheer en extra's en zie direct het totaal van het eerste jaar.
+- Bewegende kleurrand om het populairste pakket.
+
+## 0.5.1 (25 november 2026)
+
+- Website Start naar €399 als instapprijs. Zakelijk tot 8 pagina's, Plus tot 15 pagina's.
+- Per pakket concreet benoemd wat erin zit (Search Console, LocalBusiness-schema, reviews, meting zonder cookiebanner).
+- Nieuwe sectie "In elke website" en een eerlijke vergelijking met een gangbare WordPress-site op /prijzen.
+
+## 0.5.0 (25 november 2026)
+
+- Nieuwe pagina /prijzen: websitepakketten Start, Zakelijk en Plus, maatwerk, beheerpakketten met schakelaar per maand of per jaar, vergelijkingstabel, extra's, afspraken en veelgestelde vragen.
+- Alle prijzen staan centraal in lib/pricing.ts.
+- Pakketten op /websites tonen nu prijzen en verwijzen naar /prijzen.
+- "Prijzen" toegevoegd aan menu, footer en sitemap.
+- KvK- en btw-nummer in de footer via lib/company.ts (verschijnt zodra ingevuld).
+
 ## 0.4.2 (25 november 2026)
 
 - Spamval in het contactformulier hernoemd. Het oude veld heette "Website" en kon door automatisch invullen van de browser (Safari, wachtwoordmanagers) gevuld worden, waardoor echte berichten stil werden genegeerd. Genegeerde berichten worden nu gelogd.

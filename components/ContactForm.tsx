@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { COMPANY } from "@/lib/company";
 import { useState } from "react";
 
 const CONTACT_EMAIL = "contact@oravio.nl";
@@ -78,6 +79,14 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
                 {CONTACT_EMAIL}
               </a>
             </div>
+            {COMPANY.kvk && (
+              <div>
+                <p className="font-mono-label text-xs uppercase tracking-[0.15em] text-[var(--slate-light)]">
+                  KvK-nummer
+                </p>
+                <p className="mt-1.5 text-base font-medium text-[var(--ink)]">{COMPANY.kvk}</p>
+              </div>
+            )}
           </div>
         </div>
 

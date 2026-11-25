@@ -1,5 +1,6 @@
 import Link from "next/link";
 import OravioMark from "./OravioMark";
+import { COMPANY } from "@/lib/company";
 
 const FOOTER_LINKS = {
   Platform: [
@@ -11,6 +12,7 @@ const FOOTER_LINKS = {
   Diensten: [
     { href: "/websites", label: "Websites op maat" },
     { href: "/websites#werkwijze", label: "Werkwijze" },
+    { href: "/prijzen", label: "Prijzen" },
     { href: "/contact?onderwerp=website", label: "Gratis ontwerpvoorstel" },
   ],
   Bedrijf: [
@@ -52,7 +54,23 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-[#a9bcc7] md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} Oravio. Alle rechten voorbehouden.</span>
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-5">
+            <span>© {new Date().getFullYear()} {COMPANY.name}. Alle rechten voorbehouden.</span>
+            {COMPANY.kvk && (
+              <span className="flex items-center gap-2">
+                <span className="hidden h-3 w-px bg-white/20 md:block" />
+                <span className="font-mono-label tracking-[0.12em] text-[#8fa6b3]">KVK</span>
+                <span className="text-[#c4d2db]">{COMPANY.kvk}</span>
+              </span>
+            )}
+            {COMPANY.btw && (
+              <span className="flex items-center gap-2">
+                <span className="hidden h-3 w-px bg-white/20 md:block" />
+                <span className="font-mono-label tracking-[0.12em] text-[#8fa6b3]">BTW</span>
+                <span className="text-[#c4d2db]">{COMPANY.btw}</span>
+              </span>
+            )}
+          </div>
           <span className="font-mono-label">CLOUD PLATFORM VOOR MODERNE ONDERNEMINGEN</span>
         </div>
       </div>

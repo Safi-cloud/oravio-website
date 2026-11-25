@@ -19,6 +19,7 @@ import {
 import CloudField from "@/components/CloudField";
 import ScrollReveal from "@/components/ScrollReveal";
 import BuildConsole from "@/components/websites/BuildConsole";
+import WebsitePackages from "@/components/pricing/WebsitePackages";
 
 export const metadata: Metadata = {
   title: "Websites op maat — Oravio",
@@ -106,55 +107,10 @@ const BEHEER = [
   { icon: PenTool, title: "Jaarlijkse check-up", body: "Eén keer per jaar kijken we samen wat er beter kan, en wat de site heeft opgeleverd." },
 ];
 
-const PACKAGES = [
-  {
-    name: "Website",
-    tag: "Eenmalig",
-    body: "Een professionele website op maat, klaar om klanten binnen te halen.",
-    items: [
-      "Ontwerp op maat en gratis ontwerpvoorstel",
-      "Tot circa acht pagina's",
-      "Offerte- of contactformulier",
-      "Technische SEO en domeinverhuizing",
-      "Privacyverklaring en cookievrije statistieken",
-    ],
-    cta: "Vraag een ontwerpvoorstel aan",
-    featured: false,
-  },
-  {
-    name: "Website + Beheer",
-    tag: "Meest gekozen",
-    body: "Je website, en daarna nooit meer omkijken naar techniek.",
-    items: [
-      "Alles uit het pakket Website",
-      "Hosting, SSL en beveiligingsupdates",
-      "Back-ups en monitoring",
-      "Kleine wijzigingen inbegrepen",
-      "Jaarlijkse check-up",
-    ],
-    cta: "Plan een kennismaking",
-    featured: true,
-  },
-  {
-    name: "Website Plus",
-    tag: "Uitgebreid",
-    body: "Voor wie meer wil laten zien en meer uit zijn site wil halen.",
-    items: [
-      "Alles uit Website + Beheer",
-      "Meer pagina's, bijvoorbeeld per dienst of project",
-      "Meertalige website",
-      "Google Bedrijfsprofiel ingericht",
-      "Halfjaarlijkse check-up",
-    ],
-    cta: "Plan een kennismaking",
-    featured: false,
-  },
-];
-
 const FAQS = [
   {
     q: "Wat kost een website?",
-    a: "Je krijgt altijd eerst een gratis ontwerpvoorstel en daarna een vaste prijs, afgestemd op de omvang van je site. Beheer reken je per jaar af. Geen uurtje-factuurtje en geen verrassingen achteraf.",
+    a: "Een website kost eenmalig €399 (Start), €995 (Zakelijk) of €1.695 (Plus), exclusief btw. Beheer kost vanaf €240 per jaar. Je krijgt altijd eerst een gratis ontwerpvoorstel. Alle prijzen staan op de pagina Prijzen.",
   },
   {
     q: "Blijven mijn domein en mijn gegevens van mij?",
@@ -376,49 +332,20 @@ export default function WebsitesPage() {
               Kies wat bij je onderneming past.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-[var(--slate)]">
-              Altijd eerst een gratis ontwerpvoorstel, daarna een vaste prijs.
+              Altijd eerst een gratis ontwerpvoorstel, daarna een vaste prijs. Beheer vanaf €20 per maand.
             </p>
           </div>
-          <div className="mt-14 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3">
-            {PACKAGES.map((pkg) => (
-              <div
-                key={pkg.name}
-                className={`relative flex flex-col rounded-3xl p-8 md:p-9 ${
-                  pkg.featured
-                    ? "bg-gradient-dusk text-white shadow-[0_40px_80px_-30px_rgba(15,40,65,0.55)] lg:-translate-y-3"
-                    : "border border-[var(--line)] bg-[var(--paper)]"
-                }`}
-              >
-                <span
-                  className={`font-mono-label self-start rounded-full px-3 py-1 text-[10px] uppercase tracking-wider ${
-                    pkg.featured ? "bg-white/10 text-[#8fd6c2]" : "bg-[var(--sky)] text-[var(--teal)]"
-                  }`}
-                >
-                  {pkg.tag}
-                </span>
-                <h3 className={`font-display mt-5 text-2xl font-semibold ${pkg.featured ? "text-white" : "text-[var(--ink)]"}`}>
-                  {pkg.name}
-                </h3>
-                <p className={`mt-2 text-sm leading-relaxed ${pkg.featured ? "text-[#c3d6e5]" : "text-[var(--slate)]"}`}>{pkg.body}</p>
-                <ul className="mt-7 flex-1 space-y-3">
-                  {pkg.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm">
-                      <span className="bg-gradient-brand mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
-                      <span className={pkg.featured ? "text-white/90" : "text-[var(--navy)]"}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/contact?onderwerp=website"
-                  className={`mt-9 flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-transform hover:scale-[1.02] ${
-                    pkg.featured ? "bg-white text-[var(--ink)]" : "bg-gradient-brand text-white"
-                  }`}
-                >
-                  {pkg.cta}
-                  <ArrowRight className="h-4 w-4" strokeWidth={2} />
-                </Link>
-              </div>
-            ))}
+          <div className="mt-14">
+            <WebsitePackages showMaatwerk={false} />
+          </div>
+          <div className="mt-8 flex justify-center">
+            <Link
+              href="/prijzen"
+              className="flex items-center gap-2 rounded-full border border-[var(--line)] bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] transition-colors hover:border-[var(--teal)]"
+            >
+              Bekijk alle prijzen, beheer en extra&apos;s
+              <ArrowRight className="h-4 w-4" strokeWidth={2} />
+            </Link>
           </div>
         </div>
       </section>

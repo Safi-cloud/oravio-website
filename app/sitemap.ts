@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 const SITE_URL = "https://oravio.nl";
-const PAGES = ["", "/platform", "/websites", "/branches", "/faq", "/over-ons", "/contact"];
+const PAGES = ["", "/platform", "/websites", "/prijzen", "/branches", "/faq", "/over-ons", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return PAGES.map((path) => ({
