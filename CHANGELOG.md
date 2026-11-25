@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (25 november 2026)
+
+- Contactformulier verstuurt nu via Resend (`/api/contact`) in plaats van via het mailprogramma van de bezoeker.
+- Bevestiging "Bedankt" na versturen, nette HTML-mail naar contact@oravio.nl met beantwoorden naar de bezoeker.
+- Bescherming tegen spam: onzichtbaar honeypot-veld en maximaal 5 berichten per IP per 10 minuten.
+- Zolang `RESEND_API_KEY` niet is ingesteld, valt het formulier automatisch terug op de oude mailto-werking.
+- Nodig in Vercel: `RESEND_API_KEY` (optioneel `CONTACT_FROM`, `CONTACT_TO`).
+
 ## 0.3.0 (25 november 2026)
 
 - Websites op maat staat nu op zichzelf: geen beloftes meer over doorgroeien naar webshop, verhuur of boekingen.
