@@ -35,6 +35,15 @@ export default function SiteFooter() {
               Alles-in-één cloudplatform voor verkoop, verhuur en reserveringen — onder jouw eigen merk,
               zonder zelf software te bouwen.
             </p>
+            <address className="mt-6 text-sm not-italic leading-relaxed text-[#a9bcc7]">
+              {COMPANY.street}
+              <br />
+              {COMPANY.zip} {COMPANY.city}
+              <br />
+              <a href={`mailto:${COMPANY.email}`} className="text-[#c4d2db] transition-colors hover:text-white">
+                {COMPANY.email}
+              </a>
+            </address>
           </div>
 
           {Object.entries(FOOTER_LINKS).map(([heading, links]) => (

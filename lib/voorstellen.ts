@@ -9,9 +9,17 @@ export type Voorstel = {
   sub: string;
   video: string; // bestandsnaam in private/demos
   geldigTot: string; // ISO, bijvoorbeeld "2026-11-30T23:59:00+01:00"
-  pakket: string;
-  prijs: string;
-  punten: string[];
+  // Wat de demo laat zien
+  demoLabel: string; // bijvoorbeeld "Website Start + extra's uit Zakelijk"
+  basis: string[]; // onderdelen uit het basispakket
+  extra: string[]; // onderdelen uit het hogere pakket
+  extraUit: string; // naam van het hogere pakket, bijvoorbeeld "Zakelijk"
+  // Het aanbod
+  aanbodLabel: string; // bijvoorbeeld "Introductieaanbod"
+  betaalt: string; // bijvoorbeeld "U betaalt het Start-tarief"
+  prijs: number;
+  normaal: number; // prijs van het hogere pakket
+  toelichting: string;
 };
 
 export const VOORSTELLEN: Voorstel[] = [
@@ -21,14 +29,25 @@ export const VOORSTELLEN: Voorstel[] = [
     sub: "Pedicurepraktijk in 's-Hertogenbosch",
     video: "de-gelukkige-voet.mp4",
     geldigTot: "2026-11-30T23:59:00+01:00",
-    pakket: "Website Start",
-    prijs: "€399 eenmalig",
-    punten: [
+    demoLabel: "Website Start + extra's uit Zakelijk",
+    basis: [
       "Eén overzichtelijke pagina met al uw behandelingen en prijzen",
-      "Klachtenkiezer met advies en prijs, als introductie inbegrepen",
-      "Afspraak aanvragen en WhatsApp-knop op elke pagina",
-      "Uw oude pagina's worden doorgestuurd, u houdt uw plek in Google",
+      "Ontwerp in uw eigen stijl, perfect op telefoon",
+      "WhatsApp-knop, contactgegevens en openingstijden",
+      "Basis voor Google: titels, sitemap en bedrijfsgegevens",
     ],
+    extra: [
+      "Teksten door ons geschreven",
+      "Afspraak aanvragen met keuze voor behandeling en moment",
+      "Klachtenkiezer met advies en prijs",
+      "Uw oude pagina's doorgestuurd, u houdt uw plek in Google",
+    ],
+    extraUit: "Zakelijk",
+    aanbodLabel: "Introductieaanbod",
+    betaalt: "U betaalt het Start-tarief en krijgt alles wat u in de video ziet",
+    prijs: 399,
+    normaal: 995,
+    toelichting: "Wilt u later ook een eigen pagina per behandeling, dan betaalt u alleen het verschil.",
   },
   {
     code: "de-graaf-x4k9",
@@ -36,14 +55,26 @@ export const VOORSTELLEN: Voorstel[] = [
     sub: "Schilderwerken en Glashandel",
     video: "gebr-de-graaf.mp4",
     geldigTot: "2026-11-30T23:59:00+01:00",
-    pakket: "Website Zakelijk",
-    prijs: "€995 eenmalig",
-    punten: [
-      "Een eigen pagina per dienst, vindbaar in uw regio",
-      "Kleurenkiezer en offerteformulier in drie stappen",
-      "Projecten die vertrouwen geven",
-      "Uw oude pagina's worden doorgestuurd, u houdt uw plek in Google",
+    demoLabel: "Website Start + extra's uit Zakelijk",
+    basis: [
+      "Eén overzichtelijke pagina met al uw diensten",
+      "Ontwerp in uw eigen stijl, perfect op telefoon",
+      "WhatsApp-knop en telefoonnummer direct in beeld",
+      "Basis voor Google: titels, sitemap en bedrijfsgegevens",
     ],
+    extra: [
+      "Teksten door ons geschreven",
+      "Offerteformulier in drie stappen",
+      "Kleurenkiezer voor gevel, kozijnen en deur",
+      "Projecten die vertrouwen geven",
+      "Uw oude pagina's doorgestuurd, u houdt uw plek in Google",
+    ],
+    extraUit: "Zakelijk",
+    aanbodLabel: "Introductieaanbod",
+    betaalt: "U betaalt het Start-tarief en krijgt alles wat u in de video ziet",
+    prijs: 399,
+    normaal: 995,
+    toelichting: "Wilt u later een eigen pagina per dienst, dan betaalt u alleen het verschil.",
   },
   {
     code: "bjj-culemborg-h8r3",
@@ -51,14 +82,26 @@ export const VOORSTELLEN: Voorstel[] = [
     sub: "Eén site, drie voordeuren",
     video: "bjj-capoeira.mp4",
     geldigTot: "2026-11-30T23:59:00+01:00",
-    pakket: "Website Zakelijk",
-    prijs: "Prijs in overleg",
-    punten: [
-      "BJJ, capoeira en kids elk met een eigen pagina",
-      "Beide domeinnamen komen op de juiste plek binnen",
+    demoLabel: "Website Start + extra's uit Zakelijk",
+    basis: [
+      "Eén pagina voor BJJ, capoeira en kids",
+      "Ontwerp in jouw stijl, perfect op telefoon",
+      "WhatsApp-knop en contactgegevens",
+      "Basis voor Google: titels, sitemap en bedrijfsgegevens",
+    ],
+    extra: [
+      "Drie voordeuren: BJJ, capoeira en kids",
       "Proefles aanvragen in een paar tikken",
       "Rooster altijd actueel",
+      "Beide domeinnamen komen op de juiste plek binnen",
+      "Oude pagina's doorgestuurd, je houdt je plek in Google",
     ],
+    extraUit: "Zakelijk",
+    aanbodLabel: "Vriendenprijs",
+    betaalt: "Je betaalt een vriendenprijs en krijgt alles wat je in de video ziet",
+    prijs: 500,
+    normaal: 995,
+    toelichting: "Daarnaast jaarlijks beheer, zodat je site snel, veilig en actueel blijft.",
   },
 ];
 

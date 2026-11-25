@@ -10,12 +10,20 @@ type Props = {
   code: string;
   klant: string;
   sub: string;
-  pakket: string;
-  prijs: string;
-  punten: string[];
   geldigTot: string;
   resterend: string;
+  demoLabel: string;
+  basis: string[];
+  extra: string[];
+  extraUit: string;
+  aanbodLabel: string;
+  betaalt: string;
+  prijs: number;
+  normaal: number;
+  toelichting: string;
 };
+
+const eur = (n: number) => `€${n.toLocaleString("nl-NL")}`;
 
 function melden(code: string, type: string, extra: Record<string, string> = {}) {
   return fetch("/api/voorstel-event", {
@@ -26,7 +34,7 @@ function melden(code: string, type: string, extra: Record<string, string> = {}) 
   });
 }
 
-export default function ProposalView({ code, klant, sub, pakket, prijs, punten, geldigTot, resterend }: Props) {
+export default function ProposalView({ code, klant, sub, geldigTot, resterend, demoLabel, basis, extra, extraUit, aanbodLabel, betaalt, prijs, normaal, toelichting }: Props) {
   const gemeld = useRef(false);
   const bekeken = useRef(false);
   const [open, setOpen] = useState(false);
@@ -98,24 +106,47 @@ export default function ProposalView({ code, klant, sub, pakket, prijs, punten, 
       <section className="px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_1fr]">
           <div className="rounded-3xl border border-[var(--line)] bg-white p-8 md:p-10">
-            <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Mijn voorstel</p>
-            <h2 className="font-display mt-3 text-2xl font-semibold text-[var(--ink)] md:text-3xl">{pakket}</h2>
-            <p className="font-display mt-2 text-xl font-semibold text-[var(--navy)]">{prijs}</p>
-            <ul className="mt-7 space-y-3.5">
-              {punten.map((p) => (
+            <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Wat u in de demo ziet</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-[var(--ink)] md:text-3xl">{demoLabel}</h2>
+
+            <p className="font-mono-label mt-8 text-[11px] uppercase tracking-[0.18em] text-[var(--slate)]">De basis</p>
+            <ul className="mt-4 space-y-3">
+              {basis.map((p) => (
                 <li key={p} className="flex items-start gap-3 text-sm text-[var(--navy)]">
-                  <span className="bg-gradient-brand mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--sky)] text-[var(--teal)]">
                     <Check className="h-3 w-3" strokeWidth={3} />
                   </span>
                   {p}
                 </li>
               ))}
             </ul>
-            <p className="mt-7 text-xs leading-relaxed text-[var(--slate)]">
-              Prijzen exclusief btw. Daarnaast jaarlijks beheer vanaf €240: hosting, beveiliging, updates en kleine wijzigingen.{" "}
+
+            <div className="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-[#1d6e7d] via-[#2864a0] to-[#2f9e6e] p-[1.5px]">
+              <div className="rounded-[calc(1rem-1.5px)] bg-[var(--paper)] p-5 md:p-6">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="font-mono-label text-[11px] uppercase tracking-[0.18em] text-[var(--teal)]">Extra uit pakket {extraUit}</p>
+                  <span className="bg-gradient-brand rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+                    Inbegrepen
+                  </span>
+                </div>
+                <ul className="mt-4 space-y-3">
+                  {extra.map((p) => (
+                    <li key={p} className="flex items-start gap-3 text-sm font-medium text-[var(--ink)]">
+                      <span className="bg-gradient-brand mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white">
+                        <Check className="h-3 w-3" strokeWidth={3} />
+                      </span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-6 text-xs leading-relaxed text-[var(--slate)]">
               <Link href="/prijzen" className="text-[var(--teal)] underline underline-offset-2">
-                Alle pakketten bekijken
-              </Link>
+                Bekijk alle pakketten
+              </Link>{" "}
+              om te zien wat Start en {extraUit} normaal bevatten.
             </p>
           </div>
 
@@ -134,10 +165,25 @@ export default function ProposalView({ code, klant, sub, pakket, prijs, punten, 
                 </div>
               ) : !open ? (
                 <div>
-                  <OravioMark className="h-8 w-8" />
-                  <h3 className="font-display mt-5 text-2xl font-semibold">Spreekt het u aan?</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
-                    Laat het me weten, dan bespreken we samen de details. U zit nergens aan vast.
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-mono-label rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-wider text-[#8fd6c2]">
+                      {aanbodLabel}
+                    </span>
+                    <OravioMark className="h-7 w-7" />
+                  </div>
+                  <p className="mt-5 text-sm leading-relaxed text-[#c3d6e5]">{betaalt}</p>
+                  <div className="mt-5 flex items-end gap-3">
+                    <span className="font-display text-6xl font-semibold leading-none tracking-tight">{eur(prijs)}</span>
+                    <span className="pb-1 text-sm text-[#a9bcc7]">eenmalig</span>
+                  </div>
+                  <p className="mt-3 text-sm text-[#a9bcc7]">
+                    Met onderdelen uit {extraUit}, normaal <span className="line-through decoration-[#8fd6c2]/70">{eur(normaal)}</span>
+                  </p>
+                  <div className="mt-4 inline-flex rounded-full bg-[#2f9e6e]/20 px-3 py-1 text-xs font-semibold text-[#8fd6c2]">
+                    U bespaart {eur(normaal - prijs)}
+                  </div>
+                  <p className="mt-5 border-t border-white/10 pt-5 text-xs leading-relaxed text-[#a9bcc7]">
+                    {toelichting} Prijzen exclusief btw. Jaarlijks beheer vanaf €240.
                   </p>
                   <button
                     type="button"

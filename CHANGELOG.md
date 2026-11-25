@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.2 (25 november 2026)
+
+- Voorstelpagina toont eerst wat in de demo zit: de basis plus een gemarkeerd blok "Extra uit pakket Zakelijk".
+- Daarnaast het aanbod: lager tarief, met de normale prijs van het hogere pakket doorgestreept en de besparing.
+
+## 0.6.1 (25 november 2026)
+
+- Bedrijfsadres (Vijfde Buitenpepers 14, 5231 GL 's-Hertogenbosch) op de contactpagina en in de footer.
+- Bedrijfsgegevens voor Google (Organization-schema met adres en KvK) op elke pagina.
+
 ## 0.6.0 (25 november 2026)
 
 - Persoonlijke voorstelpagina's op /voorstel/<code> met de demovideo, het voorgestelde pakket en een vervaldatum. Na de vervaldatum toont de pagina "verlopen" en is de video niet meer op te vragen.

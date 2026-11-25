@@ -65,7 +65,7 @@ export async function POST(req: Request) {
 
   const rijen: [string, string][] = [
     ["Klant", v.klant],
-    ["Pakket", `${v.pakket}, ${v.prijs}`],
+    ["Aanbod", `${v.aanbodLabel}: €${v.prijs} (normaal €${v.normaal})`],
     ["Wanneer", tijd],
     ["Apparaat", device],
   ];

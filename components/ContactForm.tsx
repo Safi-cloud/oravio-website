@@ -79,6 +79,16 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
                 {CONTACT_EMAIL}
               </a>
             </div>
+            <div>
+              <p className="font-mono-label text-xs uppercase tracking-[0.15em] text-[var(--slate-light)]">
+                Adres
+              </p>
+              <p className="mt-1.5 text-base font-medium leading-relaxed text-[var(--ink)]">
+                {COMPANY.street}
+                <br />
+                {COMPANY.zip} {COMPANY.city}
+              </p>
+            </div>
             {COMPANY.kvk && (
               <div>
                 <p className="font-mono-label text-xs uppercase tracking-[0.15em] text-[var(--slate-light)]">

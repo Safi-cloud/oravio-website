@@ -8,8 +8,26 @@ import "@fontsource/space-grotesk/700.css";
 import "@fontsource/jetbrains-mono/500.css";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
+import { COMPANY } from "@/lib/company";
 import SiteFooter from "@/components/SiteFooter";
 import StickyMobileCta from "@/components/StickyMobileCta";
+
+
+const ORG_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: COMPANY.name,
+  url: "https://oravio.nl",
+  email: COMPANY.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: COMPANY.street,
+    postalCode: COMPANY.zip,
+    addressLocality: "'s-Hertogenbosch",
+    addressCountry: "NL",
+  },
+  ...(COMPANY.kvk ? { identifier: { "@type": "PropertyValue", propertyID: "KvK", value: COMPANY.kvk } } : {}),
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://oravio.nl"),
@@ -40,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="nl">
       <body className="antialiased">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_LD) }} />
         <SiteHeader />
         <main className="pb-20 md:pb-0">{children}</main>
         <SiteFooter />

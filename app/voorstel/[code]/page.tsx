@@ -66,13 +66,19 @@ export default async function VoorstelPage({ params }: { params: Promise<{ code:
   return (
     <ProposalView
       resterend={resterend}
+      geldigTot={geldigTot}
       code={v.code}
       klant={v.klant}
       sub={v.sub}
-      pakket={v.pakket}
+      demoLabel={v.demoLabel}
+      basis={v.basis}
+      extra={v.extra}
+      extraUit={v.extraUit}
+      aanbodLabel={v.aanbodLabel}
+      betaalt={v.betaalt}
       prijs={v.prijs}
-      punten={v.punten}
-      geldigTot={geldigTot}
+      normaal={v.normaal}
+      toelichting={v.toelichting}
     />
   );
 }
