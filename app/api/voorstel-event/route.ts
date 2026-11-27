@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { isGeldig, vindVoorstel } from "@/lib/voorstellen";
+import { isGeldig } from "@/lib/voorstellen";
+import { vindLive } from "@/lib/voorstellen-live";
+import { registreer, type Gebeurtenis } from "@/lib/stats";
 
 // Meldingen bij een voorstelpagina:
 //   type "open"     klant opent de pagina (hooguit 1 mail per 30 minuten per voorstel)
@@ -33,9 +35,18 @@ export async function POST(req: Request) {
   }
   const code = clean(body.code, 80);
   const type = clean(body.type, 20);
-  const v = vindVoorstel(code);
+  const v = await vindLive(code);
   if (!v || !isGeldig(v)) return NextResponse.json({ error: "Verlopen." }, { status: 410 });
-  if (!["open", "bekeken", "akkoord"].includes(type)) return NextResponse.json({ error: "Ongeldig." }, { status: 400 });
+  if (!["open", "start", "voortgang", "bekeken", "akkoord"].includes(type)) return NextResponse.json({ error: "Ongeldig." }, { status: 400 });
+
+  const sessie = clean(body.sessie, 40);
+  const device = apparaat(req.headers.get("user-agent") || "");
+  const g: Gebeurtenis =
+    type === "voortgang" ? { type: "voortgang", pct: Number(body.pct) || 0 } : ({ type } as Gebeurtenis);
+  const stand = await registreer(code, sessie, device, g);
+
+  // Starten en voortgang alleen tellen, daar komt geen mail van.
+  if (type === "start" || type === "voortgang") return NextResponse.json({ ok: true });
 
   if (type !== "akkoord") {
     const key = `${code}:${type}`;
@@ -48,7 +59,6 @@ export async function POST(req: Request) {
   const telefoon = clean(body.telefoon, 40);
   const opmerking = clean(body.opmerking, 1500);
   const tijd = new Date().toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam", dateStyle: "full", timeStyle: "short" });
-  const device = apparaat(req.headers.get("user-agent") || "");
 
   const titel =
     type === "open"
@@ -65,10 +75,16 @@ export async function POST(req: Request) {
 
   const rijen: [string, string][] = [
     ["Klant", v.klant],
-    ["Aanbod", `${v.aanbodLabel}: €${v.prijs} (normaal €${v.normaal})`],
+    ["Aanbod", `${v.aanbodLabel}: €${v.prijs} (normaal €${v.normaal})${v.prijs === 199 ? " + Beheer Zorgeloos €35 p/m" : ""}`],
     ["Wanneer", tijd],
     ["Apparaat", device],
   ];
+  if (stand) {
+    rijen.push([
+      "Tot nu toe",
+      `${stand.geopend}× geopend · video ${stand.gestart}× gestart · ${stand.afgekeken}× afgekeken · verst gekeken ${stand.maxPct}%`,
+    ]);
+  }
   if (naam) rijen.push(["Naam", naam]);
   if (telefoon) rijen.push(["Telefoon", telefoon]);
   if (opmerking) rijen.push(["Opmerking", opmerking]);

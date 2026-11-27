@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Clock, Lock, MessageCircle } from "lucide-react";
+import { ACTIE } from "@/lib/pricing";
+import ActieScope from "@/components/pricing/ActieScope";
+import { ArrowRight, Camera, Check, Clock, Lock, MessageCircle } from "lucide-react";
 import CloudField from "@/components/CloudField";
 import OravioMark from "@/components/OravioMark";
 
@@ -65,11 +67,17 @@ function usePriceDrop(from: number, to: number) {
   return { ref, value, done } as const;
 }
 
-function melden(code: string, type: string, extra: Record<string, string> = {}) {
+// Eén id per paginabezoek, zodat het overzicht per bezoek laat zien hoe ver er gekeken is.
+const SESSIE = typeof window !== "undefined" ? Math.random().toString(36).slice(2, 12) : "";
+
+function melden(code: string, type: string, extra: Record<string, string | number> = {}) {
+  try {
+    if (type !== "akkoord" && localStorage.getItem("oravio-eigenaar") === "1") return Promise.resolve(new Response("{}"));
+  } catch {}
   return fetch("/api/voorstel-event", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ code, type, ...extra }),
+    body: JSON.stringify({ code, type, sessie: SESSIE, ...extra }),
     keepalive: true,
   });
 }
@@ -92,6 +100,8 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
   const panelRef = useRef<HTMLDivElement>(null);
   const { ref: dropRef, value: dropValue, done: dropDone } = usePriceDrop(normaal, prijs);
   const pct = Math.round(((normaal - prijs) / normaal) * 100);
+  const kijkbeurt = useRef<{ mijlpalen: Set<number>; klaar: boolean }>({ mijlpalen: new Set(), klaar: false });
+  const isActie = ACTIE.actief && prijs === ACTIE.voor;
 
   useEffect(() => {
     if (status !== "sent") return;
@@ -148,10 +158,28 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
               controlsList="nodownload noplaybackrate"
               disablePictureInPicture
               onContextMenu={(e) => e.preventDefault()}
+              onPlay={(e) => {
+                // Een nieuwe kijkbeurt: aan het begin, of opnieuw na het einde.
+                if (e.currentTarget.currentTime < 1.5 || kijkbeurt.current.klaar) {
+                  kijkbeurt.current = { mijlpalen: new Set(), klaar: false };
+                  melden(code, "start").catch(() => {});
+                }
+              }}
+              onTimeUpdate={(e) => {
+                const v = e.currentTarget;
+                if (!v.duration) return;
+                const pct = (v.currentTime / v.duration) * 100;
+                for (const m of [25, 50, 75]) {
+                  if (pct >= m && !kijkbeurt.current.mijlpalen.has(m)) {
+                    kijkbeurt.current.mijlpalen.add(m);
+                    melden(code, "voortgang", { pct: m }).catch(() => {});
+                  }
+                }
+              }}
               onEnded={() => {
-                if (bekeken.current) return;
-                bekeken.current = true;
+                kijkbeurt.current.klaar = true;
                 melden(code, "bekeken").catch(() => {});
+                bekeken.current = true;
               }}
             />
           </div>
@@ -159,6 +187,34 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
             <Lock className="h-3.5 w-3.5" strokeWidth={2} />
             Vertrouwelijk voorstel. Deze link is persoonlijk en verloopt automatisch.
           </p>
+
+          <div className="relative mt-8 overflow-hidden rounded-3xl border border-[var(--line,rgba(15,40,65,0.08))] bg-white/80 p-6 shadow-[0_30px_60px_-40px_rgba(15,40,65,0.35)] backdrop-blur md:p-8">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#8fd6c2] opacity-25 blur-3xl" />
+            <div className="relative flex flex-col gap-5 md:flex-row md:items-start">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-dusk text-white">
+                <Camera className="h-5 w-5" strokeWidth={2} />
+              </span>
+              <div>
+                <p className="font-mono-label text-[11px] uppercase tracking-[0.18em] text-[var(--slate)]">{je ? "Jouw beeld in de hoofdrol" : "Uw beeld in de hoofdrol"}</p>
+                <h3 className="font-display mt-2 text-xl font-semibold tracking-tight md:text-2xl">
+                  {je ? "Straks met jouw eigen foto's en video's." : "Straks met uw eigen foto's en video's."}
+                </h3>
+                <p className="mt-3 leading-relaxed text-[var(--slate)]">
+                  {je
+                    ? "In deze demo zie je sfeerbeelden als voorbeeld. Bij de bouw verwerken we jouw eigen foto's en video's: je werk, je team en je zaak. We kiezen samen de mooiste beelden, maken ze passend voor elke plek op de site en zorgen dat ze scherp en snel laden op elk scherm. Zo wordt het niet zomaar een mooie website, maar echt die van jou."
+                    : "In deze demo ziet u sfeerbeelden als voorbeeld. Bij de bouw verwerken wij uw eigen foto's en video's: uw werk, uw team en uw zaak. We kiezen samen de mooiste beelden, maken ze passend voor elke plek op de site en zorgen dat ze scherp en snel laden op elk scherm. Zo wordt het niet zomaar een mooie website, maar echt die van u."}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {[je ? "Jouw eigen beelden" : "Uw eigen beelden", "Op maat gesneden", "Scherp en snel op elk scherm", "Inbegrepen in de prijs"].map((x) => (
+                    <span key={x} className="inline-flex items-center gap-1.5 rounded-full bg-[#eaf6f1] px-3 py-1.5 text-xs font-medium text-[#1f6b52]">
+                      <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+                      {x}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -177,7 +233,11 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
               </h2>
               <p className="mt-4 max-w-md text-base leading-relaxed text-[#c3d6e5]">
                 Ontwerp, teksten, slimme formulieren en doorverwijzingen: dit is een complete {extraUit}-website. {t.U} krijgt hem
-                {prijs < 450 ? " voor het tarief van ons instappakket." : " voor een speciale prijs."}
+                {isActie
+                  ? ` voor de actieprijs van ons instappakket, met daarbij Beheer Zorgeloos voor €${ACTIE.perMaand} per maand.`
+                  : prijs < 450
+                    ? " voor het tarief van ons instappakket."
+                    : " voor een speciale prijs."}
               </p>
             </div>
 
@@ -210,11 +270,34 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
                 >
                   {t.U} bespaart {eur(normaal - prijs)} · {pct}% korting
                 </div>
+                {isActie && (
+                  <div className="mt-6 rounded-2xl bg-white/[0.07] p-4 ring-1 ring-white/10">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <p className="text-sm text-[#c3d6e5]">+ Beheer Zorgeloos</p>
+                      <p className="font-display shrink-0 whitespace-nowrap text-2xl font-semibold">
+                        €{ACTIE.perMaand}
+                        <span className="ml-1 text-sm font-normal text-[#a9bcc7]">per maand</span>
+                      </p>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-[#a9bcc7]">
+                      Via automatische incasso, het eerste jaar verplicht bij deze actie. Hosting, updates, back-ups en tot 4 uur
+                      wijzigingen per jaar zijn inbegrepen.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {isActie && (
+        <section className="px-6 pt-10 md:px-10">
+          <div className="mx-auto max-w-5xl">
+            <ActieScope u={!je} />
+          </div>
+        </section>
+      )}
 
       <section className="px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_1fr]">
@@ -280,6 +363,19 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
                   <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
                     Ik heb {t.uw} reactie ontvangen en neem snel contact met {t.u} op om de volgende stap af te stemmen.
                   </p>
+                  <div className="mt-6 rounded-2xl bg-white/[0.07] p-5 ring-1 ring-white/10">
+                    <p className="font-display font-semibold">Alvast een stap verder?</p>
+                    <p className="mt-1 text-sm leading-relaxed text-[#c3d6e5]">
+                      Lever {t.uw} logo, foto&apos;s en gegevens in één keer aan. Dan kunnen we direct beginnen.
+                    </p>
+                    <Link
+                      href={`/intake/${code}`}
+                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--ink)] transition-transform hover:scale-[1.02]"
+                    >
+                      Materialen aanleveren
+                      <ArrowRight className="h-4 w-4" strokeWidth={2} />
+                    </Link>
+                  </div>
                 </div>
               ) : !open ? (
                 <div>
@@ -290,13 +386,17 @@ export default function ProposalView({ code, klant, sub, geldigTot, resterend, d
                     <OravioMark className="h-7 w-7" />
                   </div>
                   <h3 className="font-display mt-5 text-2xl font-semibold leading-snug">
-                    {extraUit} voor <span className="text-[#8fd6c2]">{eur(prijs)}</span>. Zullen we beginnen?
+                    {extraUit} voor <span className="text-[#8fd6c2]">{eur(prijs)}</span>
+                    {isActie && <span className="text-[#c3d6e5]"> + €{ACTIE.perMaand} p/m</span>}. Zullen we beginnen?
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
                     Laat het weten, dan stemmen we samen de details af. {t.U} zit nergens aan vast tot {t.u} akkoord geeft.
                   </p>
                   <p className="mt-5 border-t border-white/10 pt-5 text-xs leading-relaxed text-[#a9bcc7]">
-                    {toelichting} Prijzen exclusief btw. Jaarlijks beheer vanaf €240.
+                    {toelichting} Prijzen exclusief btw.{" "}
+                    {isActie
+                      ? `Inclusief Beheer Zorgeloos, €${ACTIE.perMaand} per maand via automatische incasso, het eerste jaar verplicht.`
+                      : "Jaarlijks beheer vanaf €240."}
                   </p>
                   <button
                     type="button"

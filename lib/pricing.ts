@@ -1,6 +1,41 @@
 // Eén bron voor alle prijzen op de site. Pas hier aan, dan verandert het overal.
 // Alle bedragen exclusief 21% btw.
 
+// Tijdelijke actie op pakket Start. Zet "actief" op false om de actie overal uit te zetten.
+export const ACTIE = {
+  actief: true,
+  pakket: "start",
+  label: "Tijdelijke actie",
+  van: 399,
+  voor: 199,
+  beheer: "zorgeloos",
+  perMaand: 35,
+  maanden: 12,
+  kort: "Bij de actie hoort Beheer Zorgeloos: €35 per maand via automatische incasso, het eerste jaar verplicht.",
+};
+
+// Wat wel en niet in de actie zit. Wordt getoond op de prijzenpagina en in elk actievoorstel.
+export const ACTIE_SCOPE = {
+  wel: [
+    { titel: "Website zoals in de demo", tekst: "Het ontwerp uit de video, aangevuld met de eigen gegevens van de zaak." },
+    { titel: "Tot 10 eigen foto's", tekst: "Bijgesneden, scherp gemaakt en geoptimaliseerd, zodat ze razendsnel laden." },
+    { titel: "Logo en huisstijlkleuren", tekst: "Verwerkt in het ontwerp, zodat alles klopt met de zaak." },
+    { titel: "1 correctieronde", tekst: "Alle opmerkingen in één keer doorgeven, wij passen alles aan." },
+    { titel: "Domein, formulier en doorverwijzingen", tekst: "Domein gekoppeld, formulier mailt direct door en oude pagina's blijven vindbaar." },
+    { titel: "Live binnen 2 weken", tekst: "Gerekend vanaf het moment dat alle materialen binnen zijn." },
+  ],
+  niet: [
+    { titel: "Fotograaf of fotoshoot", prijs: "op aanvraag" },
+    { titel: "Video monteren of bewerken", prijs: "€65 per uur" },
+    { titel: "Nieuwe pagina's of onderdelen buiten de demo", prijs: "vanaf €95" },
+    { titel: "Extra correctierondes", prijs: "€65 per uur" },
+    { titel: "Teksten herschrijven buiten de demo", prijs: "€75 per pagina" },
+  ],
+  aanleveren: 14,
+  wijzigingenUur: 4,
+  uurtarief: 65,
+};
+
 export type WebsitePackage = {
   id: string;
   name: string;
@@ -138,7 +173,9 @@ export const EXTRAS: { label: string; price: string }[] = [
 export const TERMS: string[] = [
   "Het ontwerpvoorstel met demovideo is gratis en vrijblijvend.",
   "Websitebouw: 50% bij akkoord, 50% bij oplevering.",
-  "Beheer wordt per jaar vooraf gefactureerd en is jaarlijks opzegbaar, tot 1 maand voor het einde van het jaar.",
+  "Bij de actieprijs van €199 hoort Beheer Zorgeloos voor €35 per maand. Dit wordt maandelijks via automatische incasso afgeschreven en is de eerste 12 maanden niet opzegbaar. Daarna maandelijks opzegbaar met 1 maand opzegtermijn.",
+  "Bij de actie lever je binnen 14 dagen na akkoord je materialen aan via oravio.nl/intake. Lukt dat niet, dan vullen we de site met passende stockfoto's zodat je toch live gaat.",
+  "Overig beheer wordt per jaar vooraf gefactureerd en is jaarlijks opzegbaar, tot 1 maand voor het einde van het jaar.",
   "Elke website draait op onze hosting en heeft minimaal Beheer Basis.",
   "Je domeinnaam staat op jouw naam.",
   "Stop je met beheer, dan zetten we je website over naar een andere partij voor een vast bedrag van €150.",

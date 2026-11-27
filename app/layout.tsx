@@ -11,6 +11,7 @@ import SiteHeader from "@/components/SiteHeader";
 import { COMPANY } from "@/lib/company";
 import SiteFooter from "@/components/SiteFooter";
 import StickyMobileCta from "@/components/StickyMobileCta";
+import VerbergOpKompas from "@/components/VerbergOpKompas";
 
 
 const ORG_LD = {
@@ -59,10 +60,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="nl">
       <body className="antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_LD) }} />
-        <SiteHeader />
+        <VerbergOpKompas>
+          <SiteHeader />
+        </VerbergOpKompas>
         <main className="pb-20 md:pb-0">{children}</main>
-        <SiteFooter />
-        <StickyMobileCta />
+        <VerbergOpKompas>
+          <SiteFooter />
+          <StickyMobileCta />
+        </VerbergOpKompas>
       </body>
     </html>
   );

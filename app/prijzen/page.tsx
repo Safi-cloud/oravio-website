@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Video, BadgeEuro, MapPin, Gauge, Check } from "lucide-react";
+import { ArrowRight, Video, BadgeEuro, MapPin, Gauge, Check, Plus } from "lucide-react";
 import CloudField from "@/components/CloudField";
 import ScrollReveal from "@/components/ScrollReveal";
-import WebsitePackages from "@/components/pricing/WebsitePackages";
+import WebsitePackages, { MaatwerkCard } from "@/components/pricing/WebsitePackages";
+import ActieScope from "@/components/pricing/ActieScope";
 import BeheerPlans from "@/components/pricing/BeheerPlans";
 import PriceCalculator from "@/components/pricing/PriceCalculator";
-import { EXTRAS, TERMS, STANDARD, VERGELIJKING } from "@/lib/pricing";
+import { ACTIE, BEHEER_PLANS, EXTRAS, TERMS, STANDARD, VERGELIJKING, euro } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Prijzen websites en beheer — Oravio",
   description:
-    "Website op maat vanaf €399: Start €399, Zakelijk €995, Plus €1.695. Beheer vanaf €20 per maand. Altijd eerst een gratis ontwerpvoorstel.",
+    "Tijdelijke actie: Website Start voor €199 in plaats van €399, met Beheer Zorgeloos €35 per maand. Zakelijk €995, Plus €1.695. Altijd eerst een gratis ontwerpvoorstel.",
   openGraph: {
     title: "Prijzen websites en beheer — Oravio",
-    description: "Website op maat vanaf €399 en beheer vanaf €20 per maand. Eerst gratis zien, dan beslissen.",
+    description: "Tijdelijk: website op maat voor €199 met Beheer Zorgeloos €35 per maand. Eerst gratis zien, dan beslissen.",
     url: "https://oravio.nl/prijzen",
   },
 };
@@ -27,6 +28,10 @@ const PROMISES = [
 ];
 
 const FAQS = [
+  {
+    q: "Hoe werkt de actie van €199?",
+    a: "Je krijgt Website Start voor €199 in plaats van €399. Daarbij hoort Beheer Zorgeloos voor €35 per maand, het eerste jaar verplicht. Dat bedrag schrijven we maandelijks af via automatische incasso. Je betaalt het eerste jaar dus €199 eenmalig plus 12 keer €35. Daarna is het beheer maandelijks opzegbaar.",
+  },
   {
     q: "Waarom hoort er altijd beheer bij?",
     a: "Je website draait op onze snelle hosting. Daarmee zijn veiligheid, updates en back-ups altijd geregeld en hoef je zelf nergens naar om te kijken.",
@@ -57,10 +62,40 @@ export default function PrijzenPage() {
             Heldere prijzen, <span className="text-gradient">geen verrassingen</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[var(--slate)] md:text-lg">
-            Een professionele website op maat al vanaf <strong className="text-[var(--ink)]">€399</strong>, en daarna
-            zorgeloos beheerd. Je ziet altijd eerst gratis hoe jouw nieuwe site eruitziet.
+            Een professionele website op maat, met één vast bedrag per maand voor beheer. Je ziet altijd eerst gratis hoe
+            jouw nieuwe site eruitziet.
           </p>
         </div>
+
+        {ACTIE.actief && (
+          <a
+            href="#websites"
+            className="group relative mx-auto mt-10 flex max-w-3xl flex-col items-center gap-5 overflow-hidden rounded-3xl border-2 border-[#ffcfc4] bg-white/90 p-6 text-left shadow-[0_30px_70px_-40px_rgba(232,92,68,0.6)] backdrop-blur-sm transition-transform hover:-translate-y-0.5 md:flex-row md:p-7"
+          >
+            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#ff9a7a] opacity-20 blur-3xl" />
+            <span className="inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-gradient-to-r from-[#ff7a66] to-[#f5a35b] px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white md:self-center">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+              {ACTIE.label}
+            </span>
+            <div className="relative flex-1">
+              <p className="font-display text-lg font-semibold text-[var(--ink)] md:text-xl">
+                Website Start voor{" "}
+                <span className="relative mx-1 text-[var(--slate)]/70">
+                  {euro(ACTIE.van)}
+                  <span className="absolute left-[-6%] top-1/2 h-[2px] w-[112%] -rotate-6 rounded bg-[#ff7a66]" />
+                </span>{" "}
+                <span className="text-[#e85c44]">{euro(ACTIE.voor)}</span>
+              </p>
+              <p className="mt-1 text-sm text-[var(--slate)]">
+                Plus Beheer Zorgeloos voor {euro(ACTIE.perMaand)} per maand via automatische incasso, het eerste jaar verplicht.
+              </p>
+            </div>
+            <span className="relative flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[#e85c44]">
+              Bekijk de actie
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
+            </span>
+          </a>
+        )}
         <div className="relative mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-4 md:grid-cols-4">
           {PROMISES.map((p) => {
             const Icon = p.icon;
@@ -75,19 +110,56 @@ export default function PrijzenPage() {
         </div>
       </section>
 
-      {/* Websites */}
+      {/* Websites en beheer, als één geheel */}
       <section id="websites" className="px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="mx-auto max-w-2xl text-center">
-              <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Stap 1 · Je website</p>
+              <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Je website, compleet</p>
               <h2 className="font-display mt-4 text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-4xl">
-                Eenmalig, voor een vaste prijs.
+                Eenmalig bouwen, daarna een vast bedrag per maand.
               </h2>
+              <p className="mt-5 text-base leading-relaxed text-[var(--slate)]">
+                Bij elk pakket zie je direct beide: wat het bouwen kost en wat het beheer per maand kost. Geen verrassingen achteraf.
+              </p>
             </div>
           </ScrollReveal>
-          <div className="mt-14">
-            <WebsitePackages />
+          <div className="mt-16">
+            <WebsitePackages showMaatwerk={false} />
+          </div>
+
+          {ACTIE.actief && (
+            <div id="actie" className="mx-auto mt-14 max-w-6xl scroll-mt-28">
+              <ActieScope intakeHref="/intake" />
+            </div>
+          )}
+
+          <div id="beheer" className="relative mt-16 scroll-mt-28">
+            <div className="flex items-center justify-center gap-4">
+              <span className="h-px w-16 bg-[var(--line)] md:w-32" />
+              <span className="bg-gradient-brand flex h-11 w-11 items-center justify-center rounded-full text-white shadow-lg">
+                <Plus className="h-5 w-5" strokeWidth={2.5} />
+              </span>
+              <span className="h-px w-16 bg-[var(--line)] md:w-32" />
+            </div>
+            <div className="mx-auto mt-8 max-w-2xl text-center">
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-[var(--ink)] md:text-3xl">
+                Kies je beheer, vanaf {euro(Math.min(...BEHEER_PLANS.map((b) => b.perMonth)))} per maand.
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-[var(--slate)]">
+                Hosting, veiligheid en updates zijn altijd geregeld. Kies hoeveel hulp je daarnaast wilt.
+              </p>
+            </div>
+            <div className="mx-auto mt-10 max-w-6xl rounded-[2rem] bg-[#eef5fa] p-5 md:p-8">
+              <BeheerPlans />
+            </div>
+            <p className="mt-5 text-center text-xs text-[var(--slate)]">
+              Bij de actie wordt Zorgeloos maandelijks via incasso afgeschreven. Overig beheer wordt per jaar vooraf gefactureerd.
+              Alle prijzen exclusief 21% btw.
+            </p>
+            <div className="mx-auto mt-12 max-w-6xl">
+              <MaatwerkCard />
+            </div>
           </div>
         </div>
       </section>
@@ -144,33 +216,12 @@ export default function PrijzenPage() {
         </div>
       </section>
 
-      {/* Beheer */}
-      <section id="beheer" className="bg-gradient-dusk relative overflow-hidden px-6 py-20 text-white md:px-10 md:py-28">
-        <div className="relative mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[#8fd6c2]">Stap 2 · Beheer</p>
-            <h2 className="font-display mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
-              Daarna nooit meer omkijken naar techniek.
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#c3d6e5]">
-              Hosting, veiligheid en updates zijn altijd geregeld. Kies hoeveel hulp je daarnaast wilt.
-            </p>
-          </div>
-          <div className="mt-12">
-            <BeheerPlans />
-          </div>
-          <p className="mt-6 text-center text-xs text-[#a9bcc7]">
-            Beheer wordt per jaar vooraf gefactureerd. Alle prijzen exclusief 21% btw.
-          </p>
-        </div>
-      </section>
-
       {/* Calculator */}
       <section id="samenstellen" className="px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="mx-auto max-w-2xl text-center">
-              <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Stap 3 · Samenstellen</p>
+              <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Samenstellen</p>
               <h2 className="font-display mt-4 text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-4xl">
                 Reken het zelf uit.
               </h2>
@@ -186,7 +237,7 @@ export default function PrijzenPage() {
       </section>
 
       {/* Extra's en voorwaarden */}
-      <section className="border-t border-[var(--line)] px-6 py-20 md:px-10 md:py-28">
+      <section id="afspraken" className="scroll-mt-24 border-t border-[var(--line)] px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
           <div>
             <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">Extra&apos;s</p>

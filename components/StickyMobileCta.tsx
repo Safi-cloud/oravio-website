@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function StickyMobileCta() {
   const pathname = usePathname();
-  if (pathname === "/contact") return null;
+  if (pathname === "/contact" || pathname?.startsWith("/intake")) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--line)] bg-[var(--paper)]/95 p-3 backdrop-blur-md md:hidden">

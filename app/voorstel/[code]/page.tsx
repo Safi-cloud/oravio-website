@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { Clock } from "lucide-react";
 import CloudField from "@/components/CloudField";
 import ProposalView from "@/components/voorstel/ProposalView";
-import { isGeldig, resterendeTijd, vindVoorstel } from "@/lib/voorstellen";
+import { isGeldig, resterendeTijd } from "@/lib/voorstellen";
+import { vindLive } from "@/lib/voorstellen-live";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function VoorstelPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
-  const v = vindVoorstel(code);
+  const v = await vindLive(code);
   if (!v) notFound();
 
   if (!isGeldig(v)) {

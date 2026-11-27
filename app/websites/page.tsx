@@ -110,7 +110,7 @@ const BEHEER = [
 const FAQS = [
   {
     q: "Wat kost een website?",
-    a: "Een website kost eenmalig €399 (Start), €995 (Zakelijk) of €1.695 (Plus), exclusief btw. Beheer kost vanaf €240 per jaar. Je krijgt altijd eerst een gratis ontwerpvoorstel. Alle prijzen staan op de pagina Prijzen.",
+    a: "Een website kost eenmalig €399 (Start, tijdelijk €199 met Beheer Zorgeloos van €35 per maand), €995 (Zakelijk) of €1.695 (Plus), exclusief btw. Beheer kost vanaf €20 per maand. Je krijgt altijd eerst een gratis ontwerpvoorstel. Alle prijzen staan op de pagina Prijzen.",
   },
   {
     q: "Blijven mijn domein en mijn gegevens van mij?",
@@ -332,7 +332,7 @@ export default function WebsitesPage() {
               Kies wat bij je onderneming past.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-[var(--slate)]">
-              Altijd eerst een gratis ontwerpvoorstel, daarna een vaste prijs. Beheer vanaf €20 per maand.
+              Altijd eerst een gratis ontwerpvoorstel, daarna een vaste prijs om te bouwen en een vast bedrag per maand voor beheer.
             </p>
           </div>
           <div className="mt-14">

@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.0.0 (27 november 2026)
+
+Nieuw: het Kompas op `/kompas`, je eigen cockpit (vervangt `/overzicht`).
+
+- Inloggen met `OVERZICHT_SLEUTEL`, 30 dagen onthouden per apparaat, met beveiligde cookie en een limiet op foute pogingen.
+- Vandaag: kerncijfers, "Nu bellen" met de warmste leads, funnel van link tot klant, pijplijn, taken en bijna verlopen links, live activiteit en snel delen.
+- Voorstellen: zoeken en filteren, warmte en status per klant, link kopiëren, WhatsApp met kant-en-klaar bericht en verlengen met één tik.
+- Per voorstel: leadstatus (Nieuw tot Klant), contactgegevens, volgende actie met datum, notities met snelknoppen en logboek; alle teksten en prijzen aanpassen; geldigheid zetten; demovideo uploaden of vervangen; verbergen of verwijderen; alle bezoeken.
+- Nieuw voorstel in een minuut: sjablonen voor salon, vakman en zorg, u- of je-vorm, video uploaden, direct delen via WhatsApp.
+- Intakes: alle aangeleverde gegevens, logo en foto's op één plek, kopiëren en afvinken.
+- Instellingen: status van Blob, Resend en wachtwoord, prijzen en handige links.
+- Voorstellen komen nu uit de code plus alles uit het Kompas (opgeslagen in Vercel Blob); video's uit het Kompas worden via de bestaande beveiligde videolink afgespeeld.
+- Op het Kompas staan de gewone kop en voet van de site niet; het apparaat telt als eigenaar, dus eigen bezoeken tellen niet mee.
+
+## 0.9.0 (27 november 2026)
+
+- Kijkstatistieken per voorstel: aantal keer geopend, video gestart, hoe ver gekeken (25, 50, 75, 100%) en afgekeken, per bezoek en apparaat. Opgeslagen in Vercel Blob.
+- Meldingsmails tonen nu de stand tot nu toe, bijvoorbeeld "3× geopend · video 2× gestart · 1× afgekeken".
+- Nieuw overzicht op `/overzicht?sleutel=...` met per voorstel een warmtelabel (Bekeken, Warm, Heet, Akkoord) en alle bezoeken. Vereist `OVERZICHT_SLEUTEL`.
+- Wie het overzicht opent, wordt op dat apparaat als eigenaar gemarkeerd: eigen bezoeken tellen niet mee.
+
+## 0.8.0 (27 november 2026)
+
+- Nieuw blok "Dit zit er allemaal in": wat wel en niet in de actie zit, met vaste prijzen voor extra werk. Op de prijzenpagina en in elk actievoorstel. Inhoud staat in `ACTIE_SCOPE` in `lib/pricing.ts`.
+- Nieuwe intakepagina `/intake` en `/intake/<voorstelcode>`: zes stappen voor gegevens, domein, openingstijden, prijzen, logo, foto's (tot 10), teksten en kleuren. Met live voorproefje, automatisch bewaren op het apparaat en een feestelijke bevestiging.
+- Foto's gaan rechtstreeks naar Vercel Blob en worden in de browser verkleind. Vereist `BLOB_READ_WRITE_TOKEN`.
+- Na het versturen krijgt Oravio een mail met alle gegevens en foto's, en de klant een bevestiging.
+- Na "Ja, ik wil dit" in een voorstel staat direct de knop "Materialen aanleveren".
+- Afspraken uitgebreid: materialen binnen 14 dagen, anders stockfoto's.
+
+## 0.7.0 (26 november 2026)
+
+- Tijdelijke actie: Website Start voor €199 in plaats van €399, met verplicht Beheer Zorgeloos (€35 per maand via automatische incasso, eerste 12 maanden). Aan en uit te zetten via `ACTIE` in `lib/pricing.ts`.
+- Prijzenpagina: actiebanner in de hero, bouwen en beheer staan nu samen in elke pakketkaart, en het beheer staat direct onder de pakketten in een lichte stijl.
+- Rekenhulp kent de actie: bij Start staat Zorgeloos vast en zie je de actieprijs.
+- Voorwaarden en veelgestelde vragen uitgebreid met de actie.
+- Alle voorstellen behalve de vriendenprijs: Zakelijk voor €199 plus Beheer Zorgeloos €35 per maand.
+
+## 0.6.7 (26 november 2026)
+
+- Elk voorstel toont onder de video een blok "Straks met uw eigen foto's en video's": de demo gebruikt voorbeeldbeelden, bij de bouw verwerken we de eigen beelden van de klant, op maat en geoptimaliseerd, inbegrepen in de prijs.
+
+## 0.6.6 (26 november 2026)
+
+- Zeven nieuwe voorstellen met demovideo, geldig tot en met 3 december 2026: Sluijter & van Gemert, Magnifiek Kappers, Fysio073, Janet Loeffen Fysiotherapie, Van Lith Schilders, Salon Lux en BY WENDYS (de laatste twee in de je-vorm).
+
 ## 0.6.5 (25 november 2026)
 
 - Voorstel Gebr. de Graaf: speciale prijs €499 voor pakket Zakelijk.

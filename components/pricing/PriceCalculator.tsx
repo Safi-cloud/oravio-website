@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { BEHEER_PLANS, WEBSITE_PACKAGES, euro } from "@/lib/pricing";
+import { ACTIE, BEHEER_PLANS, WEBSITE_PACKAGES, euro } from "@/lib/pricing";
 
 const ADDONS = [
   { id: "taal", label: "Extra taal", price: 195 },
@@ -44,9 +44,12 @@ export default function PriceCalculator() {
   const [addons, setAddons] = useState<string[]>([]);
 
   const pkg = WEBSITE_PACKAGES.find((p) => p.id === site)!;
-  const beheer = BEHEER_PLANS.find((p) => p.id === plan)!;
+  const isActie = ACTIE.actief && site === ACTIE.pakket;
+  const effPlan = isActie ? ACTIE.beheer : plan;
+  const beheer = BEHEER_PLANS.find((p) => p.id === effPlan)!;
+  const bouw = isActie ? ACTIE.voor : pkg.price;
   const extras = ADDONS.filter((a) => addons.includes(a.id) && !(a.id === "taal" && site === "plus") && !(a.id === "gbp" && site === "plus"));
-  const oneOff = pkg.price + extras.reduce((s, a) => s + a.price, 0);
+  const oneOff = bouw + extras.reduce((s, a) => s + a.price, 0);
   const year1 = oneOff + beheer.perYear;
 
   const shownOneOff = useAnimatedNumber(oneOff);
@@ -72,8 +75,22 @@ export default function PriceCalculator() {
                     : "border-[var(--line)] hover:border-[var(--teal)]/50"
                 }`}
               >
-                <p className="font-display text-sm font-semibold text-[var(--ink)]">{p.name}</p>
-                <p className="mt-1 text-xs text-[var(--slate)]">{euro(p.price)} eenmalig</p>
+                <p className="flex items-center gap-2 font-display text-sm font-semibold text-[var(--ink)]">
+                  {p.name}
+                  {ACTIE.actief && p.id === ACTIE.pakket && (
+                    <span className="rounded-full bg-[#fff1ed] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#e85c44]">Actie</span>
+                  )}
+                </p>
+                <p className="mt-1 text-xs text-[var(--slate)]">
+                  {ACTIE.actief && p.id === ACTIE.pakket ? (
+                    <>
+                      <span className="line-through opacity-60">{euro(ACTIE.van)}</span>{" "}
+                      <span className="font-semibold text-[#e85c44]">{euro(ACTIE.voor)}</span> eenmalig
+                    </>
+                  ) : (
+                    <>{euro(p.price)} eenmalig</>
+                  )}
+                </p>
               </button>
             ))}
           </div>
@@ -86,10 +103,11 @@ export default function PriceCalculator() {
               <button
                 key={p.id}
                 type="button"
+                disabled={isActie && p.id !== ACTIE.beheer}
                 onClick={() => setPlan(p.id)}
-                aria-pressed={plan === p.id}
-                className={`rounded-2xl border p-4 text-left transition-all ${
-                  plan === p.id
+                aria-pressed={effPlan === p.id}
+                className={`rounded-2xl border p-4 text-left transition-all disabled:cursor-not-allowed disabled:opacity-40 ${
+                  effPlan === p.id
                     ? "border-transparent bg-[var(--sky)] ring-2 ring-[var(--teal)]"
                     : "border-[var(--line)] hover:border-[var(--teal)]/50"
                 }`}
@@ -99,6 +117,11 @@ export default function PriceCalculator() {
               </button>
             ))}
           </div>
+          {isActie && (
+            <p className="mt-3 rounded-xl bg-[#fff6f3] px-4 py-3 text-xs leading-relaxed text-[var(--navy)] ring-1 ring-[#ffd9cf]">
+              {ACTIE.kort}
+            </p>
+          )}
         </fieldset>
 
         <fieldset>
@@ -145,11 +168,11 @@ export default function PriceCalculator() {
 
           <dl className="mt-8 space-y-4 text-sm">
             <div className="flex items-baseline justify-between gap-4">
-              <dt className="text-[#c3d6e5]">Eenmalig</dt>
+              <dt className="text-[#c3d6e5]">Eenmalig bouwen{isActie && <span className="ml-2 rounded-full bg-[#ff7a66] px-2 py-0.5 text-[10px] font-bold uppercase text-white">Actie</span>}</dt>
               <dd className="font-display text-2xl font-semibold tabular-nums">{euro(shownOneOff)}</dd>
             </div>
             <div className="flex items-baseline justify-between gap-4">
-              <dt className="text-[#c3d6e5]">Beheer per maand</dt>
+              <dt className="text-[#c3d6e5]">Beheer {beheer.name} per maand</dt>
               <dd className="font-display text-2xl font-semibold tabular-nums">{euro(beheer.perMonth)}</dd>
             </div>
           </dl>
@@ -158,7 +181,9 @@ export default function PriceCalculator() {
             <p className="text-sm text-[#c3d6e5]">Totaal eerste jaar</p>
             <p className="font-display mt-1 text-5xl font-semibold tracking-tight tabular-nums">{euro(shownYear1)}</p>
             <p className="mt-2 text-xs text-[#a9bcc7]">
-              Daarna {euro(beheer.perYear)} per jaar. Alle bedragen exclusief 21% btw.
+              {isActie
+                ? `${euro(ACTIE.voor)} eenmalig plus 12 × ${euro(ACTIE.perMaand)} via incasso. Alle bedragen exclusief 21% btw.`
+                : `Daarna ${euro(beheer.perYear)} per jaar. Alle bedragen exclusief 21% btw.`}
             </p>
           </div>
 
