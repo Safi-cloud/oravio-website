@@ -82,7 +82,7 @@ export function voorstelLink(code: string) {
 export function whatsappTekst(v: Voorstel, naam?: string) {
   const je = v.aanspreken === "je";
   const aanhef = naam ? `${je ? "Hoi" : "Beste"} ${naam.split(" ")[0]}` : je ? "Hoi" : "Goedemiddag";
-  return `${aanhef}, zoals besproken ${je ? "stuur ik je" : "stuur ik u"} hierbij ${je ? "je" : "uw"} persoonlijke voorstel met een korte video van ${je ? "je" : "uw"} nieuwe website: ${voorstelLink(v.code)}\n\nDe link is een paar dagen geldig. Groet, Casper van Oravio`;
+  return `${aanhef}, zoals besproken ${je ? "stuur ik je" : "stuur ik u"} hierbij ${je ? "je" : "uw"} persoonlijke voorstel met een korte video van ${je ? "je" : "uw"} nieuwe website: ${voorstelLink(v.code)}\n\nDe link is een paar dagen geldig. Groet, Xaverio van Oravio`;
 }
 export function telLink(t?: string) {
   return t ? `tel:${t.replace(/[^\d+]/g, "")}` : undefined;

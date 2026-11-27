@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 (27 november 2026)
+
+- Naam overal Xaverio in plaats van Casper: begroeting in het Kompas, WhatsApp-berichten en bevestigingsmail van de intake.
+
 ## 1.2.1 (27 november 2026)
 
 - VAPID-sleutels worden opgeschoond (spaties, aanhalingstekens) en gecontroleerd; het Kompas zegt precies wat er mis is, ook als ze zijn omgewisseld.

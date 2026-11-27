@@ -105,7 +105,7 @@ export default function NieuwVoorstel({ actie, site }: { actie: { voor: number; 
 
   if (klaar) {
     const link = `${site}/voorstel/${klaar}`;
-    const tekst = `${f.aanspreken === "je" ? "Hoi" : "Goedemiddag"}${f.contact ? ` ${f.contact.split(" ")[0]}` : ""}, zoals besproken hierbij ${f.aanspreken === "je" ? "je" : "uw"} persoonlijke voorstel met een korte video van ${f.aanspreken === "je" ? "je" : "uw"} nieuwe website: ${link}\n\nDe link is ${f.dagen} dagen geldig. Groet, Casper van Oravio`;
+    const tekst = `${f.aanspreken === "je" ? "Hoi" : "Goedemiddag"}${f.contact ? ` ${f.contact.split(" ")[0]}` : ""}, zoals besproken hierbij ${f.aanspreken === "je" ? "je" : "uw"} persoonlijke voorstel met een korte video van ${f.aanspreken === "je" ? "je" : "uw"} nieuwe website: ${link}\n\nDe link is ${f.dagen} dagen geldig. Groet, Xaverio van Oravio`;
     const nr = f.telefoon.replace(/[^\d]/g, "").replace(/^0/, "31");
     return (
       <div className="mx-auto max-w-2xl">

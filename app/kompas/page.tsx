@@ -45,7 +45,7 @@ export default async function Vandaag() {
       <header className="kp-in flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-sm text-[var(--slate)]">{datum.charAt(0).toUpperCase() + datum.slice(1)}</p>
-          <h1 className="font-display mt-1 text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-4xl">{groet()}, Casper</h1>
+          <h1 className="font-display mt-1 text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-4xl">{groet()}, Xaverio</h1>
           <p className="mt-2 text-[var(--slate)]">
             {bellen.length > 0
               ? `${bellen.length} ${bellen.length === 1 ? "lead is" : "leads zijn"} warm. Bel ze vandaag.`

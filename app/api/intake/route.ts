@@ -160,7 +160,7 @@ export async function POST(req: Request) {
       <li>We zetten de site live op ${u.uw} eigen domein.</li>
     </ol>
     <p style="margin:0">Vergeten iets mee te sturen? Beantwoord deze mail gewoon, dan voegen we het toe.</p>
-    <p style="margin:18px 0 0;color:#4c6478">Met vriendelijke groet,<br/>Casper, Oravio</p>
+    <p style="margin:18px 0 0;color:#4c6478">Met vriendelijke groet,<br/>Xaverio, Oravio</p>
   </div></div>`;
   await mail([email], `We hebben ${u.uw} materialen ontvangen`, bevestigHtml, `Alles is binnen, ${voornaam}! We verwerken alles en binnen 2 weken krijgt ${u.u} een link om de site te bekijken.`, TO.split(",")[0]);
 
