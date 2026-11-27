@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1 (27 november 2026)
+
+- VAPID-sleutels worden opgeschoond (spaties, aanhalingstekens) en gecontroleerd; het Kompas zegt precies wat er mis is, ook als ze zijn omgewisseld.
+- Meldingenkaart op mobiel netjes uitgelijnd; ntfy alleen zichtbaar als het is ingesteld of in de Android-app.
+
 ## 1.2.0 (27 november 2026)
 
 - Android-app Kompas (apk): opent direct het Kompas, licht ontwerp, eigen icoon. De app opent `/kompas/start`, die doorstuurt naar het Kompas.

@@ -8,7 +8,23 @@ import { leesJson, opslagAan, schrijfJson } from "@/lib/store";
 
 export type Abonnement = { sub: PushSubscription; apparaat: string; sinds: string };
 
-export const pushAan = () => !!(process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY && opslagAan());
+// Sleutels opschonen: spaties, regeleinden en aanhalingstekens uit Vercel weghalen.
+const schoon = (v?: string) => (v || "").trim().replace(/^["']|["']$/g, "").replace(/\s+/g, "");
+export const VAPID_PUBLIEK = () => schoon(process.env.VAPID_PUBLIC_KEY);
+const VAPID_PRIVE = () => schoon(process.env.VAPID_PRIVATE_KEY);
+
+// Een geldige publieke sleutel is 65 bytes (87 tekens, begint met "B"); de privésleutel 32 bytes (43 tekens).
+export function vapidProbleem(): string | null {
+  const pub = VAPID_PUBLIEK(), priv = VAPID_PRIVE();
+  if (!pub || !priv) return "VAPID_PUBLIC_KEY en VAPID_PRIVATE_KEY ontbreken in Vercel.";
+  const len = (k: string) => Buffer.from(k.replace(/-/g, "+").replace(/_/g, "/"), "base64").length;
+  if (len(pub) !== 65 && len(priv) === 65) return "De twee VAPID-sleutels zijn omgewisseld in Vercel.";
+  if (len(pub) !== 65) return `VAPID_PUBLIC_KEY klopt niet (${pub.length} tekens, verwacht 87, begint met B).`;
+  if (len(priv) !== 32) return `VAPID_PRIVATE_KEY klopt niet (${priv.length} tekens, verwacht 43).`;
+  return null;
+}
+
+export const pushAan = () => !!(VAPID_PUBLIEK() && VAPID_PRIVE() && opslagAan() && !vapidProbleem());
 export const ntfyAan = () => !!process.env.NTFY_TOPIC;
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://oravio.nl";
 
@@ -35,7 +51,7 @@ async function ntfy(titel: string, tekst: string, url: string, tag?: string) {
 }
 
 function init() {
-  webpush.setVapidDetails("mailto:contact@oravio.nl", process.env.VAPID_PUBLIC_KEY!, process.env.VAPID_PRIVATE_KEY!);
+  webpush.setVapidDetails("mailto:contact@oravio.nl", VAPID_PUBLIEK(), VAPID_PRIVE());
 }
 
 export async function abonnementen() {

@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { ingelogdVanRequest } from "@/lib/kompas-auth";
-import { ntfyAan, pushAan, stuurMelding, verwijder, voegToe } from "@/lib/push";
+import { ntfyAan, pushAan, stuurMelding, vapidProbleem, VAPID_PUBLIEK, verwijder, voegToe } from "@/lib/push";
 
 export async function GET(req: Request) {
   if (!ingelogdVanRequest(req)) return NextResponse.json({ error: "Niet ingelogd." }, { status: 401 });
-  return NextResponse.json({ aan: pushAan(), sleutel: process.env.VAPID_PUBLIC_KEY || null, ntfy: ntfyAan() ? process.env.NTFY_TOPIC : null });
+  return NextResponse.json({ aan: pushAan(), probleem: vapidProbleem(), sleutel: VAPID_PUBLIEK() || null, ntfy: ntfyAan() ? process.env.NTFY_TOPIC : null });
 }
 
 export async function POST(req: Request) {

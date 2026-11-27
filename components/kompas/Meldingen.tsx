@@ -35,13 +35,17 @@ export default function Meldingen() {
   const [ios, setIos] = useState(false);
   const [inApp, setInApp] = useState(false);
   const [topic, setTopic] = useState<string | null>(null);
+  const [probleem, setProbleem] = useState<string | null>(null);
 
   useEffect(() => {
     setIos(/iphone|ipad/i.test(navigator.userAgent));
     setInApp(/OravioApp/.test(navigator.userAgent));
     fetch("/api/kompas/push")
       .then((x) => x.json())
-      .then((r) => setTopic(r.ntfy || null))
+      .then((r) => {
+        setTopic(r.ntfy || null);
+        setProbleem(r.probleem || null);
+      })
       .catch(() => {});
     setGeinstalleerd(window.matchMedia("(display-mode: standalone)").matches);
     const h = (e: Event) => {
@@ -116,7 +120,7 @@ export default function Meldingen() {
         <span className="bg-gradient-brand flex h-11 w-11 items-center justify-center rounded-xl text-white">
           <Smartphone className="h-5 w-5" />
         </span>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 basis-[calc(100%-4rem)] sm:basis-auto">
           <p className="font-medium text-[var(--ink)]">Kompas als app</p>
           <p className="text-sm text-[var(--slate)]">
             {geinstalleerd
@@ -136,7 +140,7 @@ export default function Meldingen() {
               if (k.outcome === "accepted") setGeinstalleerd(true);
               setInstalleer(null);
             }}
-            className="bg-gradient-brand inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white"
+            className="bg-gradient-brand inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white sm:w-auto"
           >
             <Download className="h-4 w-4" /> Installeren
           </button>
@@ -144,13 +148,14 @@ export default function Meldingen() {
       </div>
       )}
 
-      {/* Meldingen via ntfy: werkt in de Android-app en op elk apparaat */}
+      {/* Meldingen via ntfy: alleen tonen als het is ingesteld of in de Android-app */}
+      {(topic || inApp) && (
       <div className="rounded-2xl bg-white p-4 ring-1 ring-[var(--line)]">
         <div className="flex flex-wrap items-center gap-4">
           <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${topic ? "bg-[#2f9e6e] text-white" : "bg-[#eef3f7] text-[var(--slate)]"}`}>
             <BellRing className="h-5 w-5" />
           </span>
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1 basis-[calc(100%-4rem)] sm:basis-auto">
             <p className="font-medium text-[var(--ink)]">Meldingen via de ntfy-app{inApp ? " (aanbevolen in de app)" : ""}</p>
             <p className="text-sm text-[var(--slate)]">
               {topic
@@ -174,6 +179,7 @@ export default function Meldingen() {
           </div>
         )}
       </div>
+      )}
 
       {/* Meldingen */}
       {!inApp && (
@@ -181,22 +187,22 @@ export default function Meldingen() {
         <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${staat === "aan" ? "bg-[#2f9e6e] text-white" : "bg-[#eef3f7] text-[var(--slate)]"}`}>
           {staat === "aan" ? <BellRing className="h-5 w-5" /> : staat === "geweigerd" ? <BellOff className="h-5 w-5" /> : <Bell className="h-5 w-5" />}
         </span>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 basis-[calc(100%-4rem)] sm:basis-auto">
           <p className="font-medium text-[var(--ink)]">Meldingen op dit apparaat</p>
           <p className="text-sm text-[var(--slate)]">
             {staat === "laden" && "Even kijken…"}
             {staat === "aan" && "Aan. Je krijgt een melding bij openen, afkijken, akkoord en nieuwe intakes."}
             {staat === "uit" && "Uit. Zet ze aan om direct te weten wanneer een klant kijkt."}
-            {staat === "niet-ingesteld" && "Nog niet ingesteld: voeg VAPID_PUBLIC_KEY en VAPID_PRIVATE_KEY toe in Vercel."}
+            {staat === "niet-ingesteld" && (probleem || "Nog niet ingesteld: voeg VAPID_PUBLIC_KEY en VAPID_PRIVATE_KEY toe in Vercel.")}
             {staat === "geweigerd" && "Geblokkeerd. Sta meldingen toe in de instellingen van je browser of app, en probeer opnieuw."}
             {staat === "niet-ondersteund" &&
               (ios ? "Op iPhone werkt dit pas nadat je het Kompas op je beginscherm hebt gezet en vanaf daar opent." : "Deze browser ondersteunt geen meldingen.")}
           </p>
           {melding && <p className="mt-1 text-xs font-medium text-[var(--teal)]">{melding}</p>}
         </div>
-        <div className="flex gap-2">
+        <div className="flex w-full gap-2 sm:w-auto">
           {staat === "uit" && (
-            <button onClick={aanzetten} disabled={bezig} className="bg-gradient-brand inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white">
+            <button onClick={aanzetten} disabled={bezig} className="bg-gradient-brand inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white sm:w-auto">
               {bezig ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bell className="h-4 w-4" />} Aanzetten
             </button>
           )}
