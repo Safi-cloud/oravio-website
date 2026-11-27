@@ -1,0 +1,23 @@
+{
+  "name": "Kompas · Oravio",
+  "short_name": "Kompas",
+  "description": "Voorstellen, leads en intakes van Oravio",
+  "id": "/kompas",
+  "start_url": "/kompas",
+  "scope": "/kompas",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f8fb",
+  "theme_color": "#1d6e7d",
+  "lang": "nl",
+  "icons": [
+    { "src": "/kompas-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/kompas-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/kompas-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Nieuw voorstel", "url": "/kompas/nieuw" },
+    { "name": "Voorstellen", "url": "/kompas/voorstellen" },
+    { "name": "Intakes", "url": "/kompas/intakes" }
+  ]
+}

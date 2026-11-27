@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CheckCircle2, CircleAlert, ExternalLink } from "lucide-react";
 import { ACTIE, ACTIE_SCOPE, BEHEER_PLANS, WEBSITE_PACKAGES } from "@/lib/pricing";
 import { SITE } from "@/lib/kompas-data";
+import Meldingen from "@/components/kompas/Meldingen";
 
 function Rij({ ok, titel, tekst }: { ok: boolean; titel: string; tekst: string }) {
   return (
@@ -22,11 +23,20 @@ export default function Instellingen() {
       <p className="kp-in mt-1 text-[var(--slate)]">Hoe alles is gekoppeld, en waar je wat aanpast.</p>
 
       <section className="kp-kaart kp-in mt-6 p-6">
+        <h2 className="font-display text-lg font-semibold text-[var(--ink)]">App en meldingen</h2>
+        <div className="mt-4">
+          <Meldingen />
+        </div>
+      </section>
+
+      <section className="kp-kaart kp-in mt-6 p-6">
         <h2 className="font-display text-lg font-semibold text-[var(--ink)]">Koppelingen</h2>
         <ul className="mt-4 space-y-3">
           <Rij ok={!!process.env.BLOB_READ_WRITE_TOKEN} titel="Vercel Blob" tekst="Opslag voor statistieken, notities, intakes, foto's en video's." />
           <Rij ok={!!process.env.RESEND_API_KEY} titel="Resend" tekst="Meldingen per mail en bevestigingen naar klanten." />
           <Rij ok={!!process.env.OVERZICHT_SLEUTEL} titel="Wachtwoord Kompas" tekst="OVERZICHT_SLEUTEL. Wijzigen in Vercel logt alle apparaten uit." />
+          <Rij ok={!!(process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY)} titel="Pushmeldingen" tekst="VAPID_PUBLIC_KEY en VAPID_PRIVATE_KEY, voor meldingen op je telefoon." />
+          <Rij ok={!!process.env.NTFY_TOPIC} titel="Meldingen via ntfy" tekst="NTFY_TOPIC, voor meldingen in de ntfy-app naast de Android-app." />
           <Rij ok={!!process.env.CONTACT_TO} titel="Ontvanger meldingen" tekst={process.env.CONTACT_TO || "Standaard: contact@oravio.nl (zet CONTACT_TO om te wijzigen)"} />
         </ul>
       </section>
@@ -70,9 +80,7 @@ export default function Instellingen() {
             </Link>
           ))}
         </div>
-        <p className="mt-5 text-sm text-[var(--slate)]">
-          Tip: zet het Kompas op je beginscherm. Open {SITE}/kompas in Safari of Chrome op je telefoon en kies &quot;Zet op beginscherm&quot;. Dan opent het als een app.
-        </p>
+
       </section>
     </div>
   );

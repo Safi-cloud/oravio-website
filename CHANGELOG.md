@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0 (27 november 2026)
+
+- Android-app Kompas (apk): opent direct het Kompas, licht ontwerp, eigen icoon. De app opent `/kompas/start`, die doorstuurt naar het Kompas.
+- Meldingen via de ntfy-app (`NTFY_TOPIC`): werkt naast de Android-app en op elk apparaat, ook als het Kompas dicht is.
+- Instellingen toont in de app alleen wat daar werkt.
+
+## 1.1.0 (27 november 2026)
+
+- Kompas is nu een installeerbare app (PWA): eigen icoon, opent zonder adresbalk, snelkoppelingen naar Nieuw, Voorstellen en Intakes.
+- Pushmeldingen op je telefoon: voorstel geopend, video afgekeken, akkoord en nieuwe intake. Tik op de melding en je zit direct bij die klant.
+- Aanzetten en testen via Kompas > Instellingen. Vereist `VAPID_PUBLIC_KEY` en `VAPID_PRIVATE_KEY`.
+
 ## 1.0.1 (27 november 2026)
 
 - Alle gedachtestreepjes uit de zichtbare teksten gehaald: vervangen door een punt, komma of dubbele punt. Paginatitels gebruiken nu "Pagina | Oravio".

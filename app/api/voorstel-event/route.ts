@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isGeldig } from "@/lib/voorstellen";
 import { vindLive } from "@/lib/voorstellen-live";
 import { registreer, type Gebeurtenis } from "@/lib/stats";
+import { stuurMelding } from "@/lib/push";
 
 // Meldingen bij een voorstelpagina:
 //   type "open"     klant opent de pagina (hooguit 1 mail per 30 minuten per voorstel)
@@ -101,6 +102,15 @@ export async function POST(req: Request) {
       .join("")}</table>
   </div></div>`;
   const text = `${titel}\n${tip}\n\n${rijen.map(([k, val]) => `${k}: ${val}`).join("\n")}`;
+
+  // Pushmelding naar het Kompas op je telefoon
+  const pushTitel =
+    type === "open" ? `${v.klant} opent je voorstel` : type === "bekeken" ? `${v.klant} keek de video helemaal` : `Akkoord van ${v.klant}!`;
+  const pushTekst = [
+    type === "akkoord" ? [naam, telefoon].filter(Boolean).join(" · ") || "Neem vandaag contact op." : tip,
+    stand ? `${stand.geopend}× geopend · ${stand.afgekeken}× afgekeken · ${device}` : device,
+  ].join("\n");
+  await stuurMelding(pushTitel, pushTekst, `/kompas/voorstellen/${v.code}`, `${v.code}-${type}`);
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return NextResponse.json({ ok: true, mail: false });

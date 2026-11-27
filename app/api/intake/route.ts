@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { vindLive } from "@/lib/voorstellen-live";
 import { ACTIE } from "@/lib/pricing";
 import { leesJson, opslagAan, schrijfJson } from "@/lib/store";
+import { stuurMelding } from "@/lib/push";
 
 // Ontvangt het intakeformulier en mailt alles naar Oravio, plus een bevestiging naar de klant.
 const FROM = process.env.CONTACT_FROM || "Oravio website <website@send.oravio.nl>";
@@ -120,6 +121,7 @@ export async function POST(req: Request) {
   const text = `${titel}\n\n${velden.map(([k, val]) => `${k}: ${val}`).join("\n")}\n\nLogo: ${logo?.url || "-"}\nFoto's:\n${fotos.map((f) => f.url).join("\n")}\n${extra.length ? `Overig:\n${extra.map((f) => f.url).join("\n")}` : ""}`;
 
   await mail([TO], titel, html, text, email);
+  await stuurMelding(`Intake binnen: ${bedrijf}`, `${fotos.length} foto's${logo ? " en logo" : ""} · ${contact}`, "/kompas/intakes", `intake-${bedrijf}`);
 
   // Bewaren voor het Kompas, zodat alles ook daar terug te vinden is.
   if (opslagAan()) {

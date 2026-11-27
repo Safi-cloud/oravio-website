@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { Compass, FolderOpen, Inbox, LayoutGrid, LogOut, Plus, Settings2 } from "lucide-react";
 import { uitloggen } from "@/app/kompas/acties";
+import { SwRegistratie } from "@/components/kompas/Meldingen";
 
 const NAV = [
   { href: "/kompas", label: "Vandaag", icon: LayoutGrid },
@@ -26,6 +27,7 @@ export default function Schil({ children, nieuweIntakes }: { children: React.Rea
 
   return (
     <div className="min-h-screen bg-[#f4f8fb]">
+      <SwRegistratie />
       <div className="kp-orb kp-orb-a" />
       <div className="kp-orb kp-orb-b" />
       {/* Zijbalk */}
