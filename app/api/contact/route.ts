@@ -76,11 +76,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Versturen is nog niet ingesteld." }, { status: 503 });
   }
 
-  const subject = `${topic} — ${company || name}`;
+  const subject = `${topic}: ${company || name}`;
   const rows: [string, string][] = [
     ["Onderwerp", topic],
     ["Naam", name],
-    ["Onderneming", company || "–"],
+    ["Onderneming", company || "niet ingevuld"],
     ["E-mailadres", email],
   ];
   const html = `<!doctype html><html><body style="margin:0;background:#f6fafd;font-family:Inter,Arial,sans-serif;color:#16283a">

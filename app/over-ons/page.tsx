@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Over ons — Oravio",
+  title: "Over ons | Oravio",
   description: "Waarom Oravio bestaat, en welke overtuiging aan het platform ten grondslag ligt.",
 };
 
 const PRINCIPLES = [
   {
     title: "Infrastructuur, geen maatwerk",
-    body: "Elke onderneming die met een ontwikkelaar in zee gaat, loopt tegen hetzelfde probleem aan: maatwerk is duur, traag, en moeilijk te onderhouden. Oravio kiest bewust voor het tegenovergestelde — één degelijk fundament, waarop ondernemingen hun eigen omgeving inrichten zonder dat er per klant opnieuw gebouwd hoeft te worden.",
+    body: "Elke onderneming die met een ontwikkelaar in zee gaat, loopt tegen hetzelfde probleem aan: maatwerk is duur, traag, en moeilijk te onderhouden. Oravio kiest bewust voor het tegenovergestelde: één degelijk fundament, waarop ondernemingen hun eigen omgeving inrichten zonder dat er per klant opnieuw gebouwd hoeft te worden.",
   },
   {
     title: "Scheiding is geen bijzaak",
-    body: "Op een platform waar meerdere ondernemingen naast elkaar draaien, is volledige scheiding tussen klanten geen extra functie — het is de basisvoorwaarde. Gegevens, ontwerp en toegang van de ene onderneming mogen nooit, onder geen enkele omstandigheid, zichtbaar zijn voor een andere.",
+    body: "Op een platform waar meerdere ondernemingen naast elkaar draaien, is volledige scheiding tussen klanten geen extra functie, het is de basisvoorwaarde. Gegevens, ontwerp en toegang van de ene onderneming mogen nooit, onder geen enkele omstandigheid, zichtbaar zijn voor een andere.",
   },
   {
     title: "Groei zonder om te bouwen",
@@ -65,11 +65,11 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           <p className="font-mono-label text-xs uppercase tracking-[0.2em] text-[var(--teal)]">De naam</p>
           <h2 className="font-display mt-4 text-2xl font-semibold tracking-tight text-[var(--ink)] md:text-3xl">
-            Oravio — het teken van oneindige verbinding
+            Oravio, het teken van oneindige verbinding
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[var(--slate)] md:text-base">
             Het beeldmerk verwijst naar precies dat: één doorlopende verbinding tussen de kern van het
-            platform en elke onderneming die erop draait — zonder begin- of eindpunt, en zonder grens aan
+            platform en elke onderneming die erop draait, zonder begin- of eindpunt, en zonder grens aan
             hoeveel ondernemingen er onderdeel van kunnen zijn.
           </p>
         </div>

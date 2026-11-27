@@ -3,7 +3,7 @@ import IntakeHero from "@/components/intake/IntakeHero";
 import IntakeWizard from "@/components/intake/IntakeWizard";
 
 export const metadata: Metadata = {
-  title: "Materialen aanleveren — Oravio",
+  title: "Materialen aanleveren | Oravio",
   description: "Lever logo, foto's en gegevens voor je nieuwe website in één keer aan.",
   robots: { index: false, follow: false },
 };

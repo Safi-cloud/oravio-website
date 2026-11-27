@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 (27 november 2026)
+
+- Alle gedachtestreepjes uit de zichtbare teksten gehaald: vervangen door een punt, komma of dubbele punt. Paginatitels gebruiken nu "Pagina | Oravio".
+
 ## 1.0.0 (27 november 2026)
 
 Nieuw: het Kompas op `/kompas`, je eigen cockpit (vervangt `/overzicht`).

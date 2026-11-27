@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Veelgestelde vragen — Oravio",
+  title: "Veelgestelde vragen | Oravio",
   description: "Antwoorden op veelgestelde vragen over het Oravio-platform: eigen domein, verkoop en verhuur, teamtoegang, betalingen en meer.",
 };
 
@@ -21,11 +21,11 @@ const FAQS = [
   },
   {
     q: "Kan ik mijn team toegang geven, met verschillende rechten?",
-    a: "Ja. Je kunt teamleden uitnodigen met een rol als eigenaar, manager of medewerker. Elke rol ziet en beheert alleen wat bij die taak hoort — gevoelige gegevens zoals omzet blijven voorbehouden aan wie dat mag zien.",
+    a: "Ja. Je kunt teamleden uitnodigen met een rol als eigenaar, manager of medewerker. Elke rol ziet en beheert alleen wat bij die taak hoort. Gevoelige gegevens zoals omzet blijven voorbehouden aan wie dat mag zien.",
   },
   {
     q: "Hoe verlopen betalingen van klanten?",
-    a: "Je koppelt je eigen betaalaccount. Opbrengsten gaan rechtstreeks naar jouw eigen rekening — nooit via een tussenpartij.",
+    a: "Je koppelt je eigen betaalaccount. Opbrengsten gaan rechtstreeks naar jouw eigen rekening, nooit via een tussenpartij.",
   },
   {
     q: "Kan ik mijn bestaande productcatalogus overzetten?",

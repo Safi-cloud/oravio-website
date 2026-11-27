@@ -32,7 +32,7 @@ export default function SiteFooter() {
               <span className="font-display text-lg font-semibold tracking-tight text-white">ORAVIO</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#a9bcc7]">
-              Alles-in-één cloudplatform voor verkoop, verhuur en reserveringen — onder jouw eigen merk,
+              Alles-in-één cloudplatform voor verkoop, verhuur en reserveringen, onder jouw eigen merk,
               zonder zelf software te bouwen.
             </p>
             <address className="mt-6 text-sm not-italic leading-relaxed text-[#a9bcc7]">

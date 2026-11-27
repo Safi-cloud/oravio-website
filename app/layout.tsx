@@ -33,13 +33,13 @@ const ORG_LD = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://oravio.nl"),
   title: {
-    default: "Oravio — De complete software voor moderne ondernemingen",
+    default: "Oravio | De complete software voor moderne ondernemingen",
     template: "%s",
   },
   description:
     "Verkoop, verhuur, reserveringen, betalingen en klantbeheer in één schaalbaar cloudplatform. Onder jouw eigen merk en domein.",
   openGraph: {
-    title: "Oravio — De complete software voor moderne ondernemingen",
+    title: "Oravio | De complete software voor moderne ondernemingen",
     description:
       "Verkoop, verhuur, reserveringen, betalingen en klantbeheer in één schaalbaar cloudplatform. Onder jouw eigen merk en domein.",
     url: "https://oravio.nl",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oravio — De complete software voor moderne ondernemingen",
+    title: "Oravio | De complete software voor moderne ondernemingen",
     description:
       "Verkoop, verhuur, reserveringen, betalingen en klantbeheer in één schaalbaar cloudplatform.",
   },

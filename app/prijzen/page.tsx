@@ -10,11 +10,11 @@ import PriceCalculator from "@/components/pricing/PriceCalculator";
 import { ACTIE, BEHEER_PLANS, EXTRAS, TERMS, STANDARD, VERGELIJKING, euro } from "@/lib/pricing";
 
 export const metadata: Metadata = {
-  title: "Prijzen websites en beheer — Oravio",
+  title: "Prijzen websites en beheer | Oravio",
   description:
     "Tijdelijke actie: Website Start voor €199 in plaats van €399, met Beheer Zorgeloos €35 per maand. Zakelijk €995, Plus €1.695. Altijd eerst een gratis ontwerpvoorstel.",
   openGraph: {
-    title: "Prijzen websites en beheer — Oravio",
+    title: "Prijzen websites en beheer | Oravio",
     description: "Tijdelijk: website op maat voor €199 met Beheer Zorgeloos €35 per maand. Eerst gratis zien, dan beslissen.",
     url: "https://oravio.nl/prijzen",
   },

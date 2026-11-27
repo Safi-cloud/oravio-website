@@ -29,7 +29,7 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
   }, [status]);
 
   function mailtoHref() {
-    const subject = encodeURIComponent(`${topic} — ${company || name}`);
+    const subject = encodeURIComponent(`${topic}: ${company || name}`);
     const body = encodeURIComponent(
       `Onderwerp: ${topic}\nNaam: ${name}\nOnderneming: ${company}\nE-mailadres: ${email}\n\nBericht:\n${message}`
     );
@@ -75,7 +75,7 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
           </h1>
           <p className="mt-6 max-w-md text-base leading-relaxed text-[var(--slate)]">
             Of je nu precies weet wat je zoekt, of eerst wilt begrijpen wat het platform voor jouw
-            onderneming kan betekenen — we denken graag met je mee.
+            onderneming kan betekenen. We denken graag met je mee.
           </p>
 
           <div className="mt-12 space-y-6">
@@ -146,7 +146,7 @@ export default function ContactForm({ initialTopic = "Het Oravio-platform" }: { 
                 <dl className="mt-7 divide-y divide-[var(--line)] rounded-2xl border border-[var(--line)] bg-white/80 backdrop-blur-sm">
                   {[
                     ["Onderwerp", topic],
-                    ["Onderneming", company || "–"],
+                    ["Onderneming", company || "niet ingevuld"],
                     ["Reactie naar", email],
                   ].map(([label, value]) => (
                     <div key={label} className="flex items-center justify-between gap-6 px-5 py-3.5">

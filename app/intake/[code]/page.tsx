@@ -7,7 +7,7 @@ import { ACTIE } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Materialen aanleveren — Oravio",
+  title: "Materialen aanleveren | Oravio",
   robots: { index: false, follow: false },
 };
 

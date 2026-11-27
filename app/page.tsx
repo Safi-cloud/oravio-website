@@ -21,11 +21,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 const PILLARS = [
   {
     title: "Jouw eigen afgeschermde omgeving",
-    body: "Iedere onderneming beschikt over een volledig eigen omgeving, met eigen gegevens, gebruikers, instellingen en branding — nooit gedeeld met een andere klant op het platform.",
+    body: "Iedere onderneming beschikt over een volledig eigen omgeving, met eigen gegevens, gebruikers, instellingen en branding. Nooit gedeeld met een andere klant op het platform.",
   },
   {
     title: "Alles onder één dak",
-    body: "Webshop, verhuur, reserveringen, betalingen en teambeheer zijn geen losse systemen die je zelf aan elkaar moet knopen. Je zet aan wat je nodig hebt — de rest staat klaar voor later.",
+    body: "Webshop, verhuur, reserveringen, betalingen en teambeheer zijn geen losse systemen die je zelf aan elkaar moet knopen. Je zet aan wat je nodig hebt, de rest staat klaar voor later.",
   },
   {
     title: "Meegroeien zonder om te bouwen",
@@ -46,17 +46,17 @@ const MODULES = [
 ];
 
 const WHY_ORAVIO = [
-  { icon: Layers, title: "Geen losse systemen", body: "Verkoop, verhuur, betalingen en klantbeheer werken al standaard samen — niks los te koppelen." },
+  { icon: Layers, title: "Geen losse systemen", body: "Verkoop, verhuur, betalingen en klantbeheer werken al standaard samen. Niks los te koppelen." },
   { icon: RefreshCw, title: "Verkoop én verhuur in één platform", body: "De enige oplossing die beide bedrijfsmodellen écht native ondersteunt, in plaats van er losse plug-ins voor te plakken." },
-  { icon: TrendingUp, title: "Altijd inzicht in je onderneming", body: "Je ziet niet alleen wát er gebeurt, maar ook wat dat betekent — zonder zelf rapportages te moeten bouwen." },
+  { icon: TrendingUp, title: "Altijd inzicht in je onderneming", body: "Je ziet niet alleen wát er gebeurt, maar ook wat dat betekent, zonder zelf rapportages te moeten bouwen." },
   { icon: Palette, title: "Volledig onder jouw eigen merk", body: "Eigen domein, eigen ontwerp, eigen uitstraling. Bezoekers zien nergens dat het platform gedeeld wordt." },
   { icon: Layers, title: "Schaalbaar zonder opnieuw te bouwen", body: "Wat vandaag werkt voor tien producten, werkt over drie jaar nog steeds voor tienduizend." },
-  { icon: Sparkles, title: "Doorlopend doorontwikkeld", body: "Nieuwe functionaliteit komt automatisch beschikbaar — geen nieuw project, geen nieuwe factuur." },
+  { icon: Sparkles, title: "Doorlopend doorontwikkeld", body: "Nieuwe functionaliteit komt automatisch beschikbaar. Geen nieuw project, geen nieuwe factuur." },
 ];
 
 const STEPS = [
   { number: "01", title: "Kennismaking", body: "We brengen samen in kaart waar je nu tegenaan loopt, en wat er nodig is om dat op te lossen." },
-  { number: "02", title: "Inrichting", body: "Je omgeving wordt opgezet: ontwerp, domein, producten en teamtoegang — klaar om mee te werken." },
+  { number: "02", title: "Inrichting", body: "Je omgeving wordt opgezet: ontwerp, domein, producten en teamtoegang, klaar om mee te werken." },
   { number: "03", title: "Livegang", body: "Je gaat live onder je eigen domein, met volledige ondersteuning tijdens de eerste periode." },
   { number: "04", title: "Doorlopende optimalisatie", body: "Nieuwe functionaliteit wordt automatisch beschikbaar. Je platform blijft meegroeien, zonder opnieuw te hoeven investeren." },
 ];
@@ -76,7 +76,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-[var(--slate)] md:text-lg">
               Verkoop, verhuur, reserveringen, betalingen en klantbeheer in één schaalbaar cloudplatform.
-              Onder jouw eigen merk en domein — zonder dat je hier zelf software voor hoeft te bouwen.
+              Onder jouw eigen merk en domein, zonder dat je hier zelf software voor hoeft te bouwen.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
@@ -106,7 +106,7 @@ export default function HomePage() {
               Meer dan een webshop. Een compleet bedrijfsplatform.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--slate)]">
-              Oravio helpt ondernemingen hun volledige bedrijfsvoering te digitaliseren — van webshop en
+              Oravio helpt ondernemingen hun volledige bedrijfsvoering te digitaliseren: van webshop en
               reserveringen tot voorraad, betalingen, klanten en rapportages. Alles draait in één veilige
               cloudomgeving, onder jouw eigen merk.
             </p>
@@ -126,7 +126,7 @@ export default function HomePage() {
       <section className="px-6 py-20 md:px-10 md:py-24">
         <div className="mx-auto max-w-7xl">
           <p className="font-mono-label text-center text-xs uppercase tracking-[0.2em] text-[var(--slate-light)]">
-            Alles in één platform — zet aan wat je nodig hebt
+            Alles in één platform. Zet aan wat je nodig hebt
           </p>
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {MODULES.map((mod, i) => {
@@ -182,29 +182,29 @@ export default function HomePage() {
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-colors hover:bg-white/[0.1]">
               <h3 className="font-display text-lg font-semibold">Verkoop én verhuur in één systeem</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
-                Een volwaardige webshop, of een beschikbaarheidskalender met reserveringsbeheer — of allebei
+                Een volwaardige webshop, of een beschikbaarheidskalender met reserveringsbeheer, of allebei
                 tegelijk, binnen dezelfde omgeving.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-colors hover:bg-white/[0.1]">
               <h3 className="font-display text-lg font-semibold">Eigen domein, eigen merk</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
-                Je draait onder je eigen domeinnaam, met je eigen uitstraling — bezoekers zien nooit dat het
+                Je draait onder je eigen domeinnaam, met je eigen uitstraling. Bezoekers zien nooit dat het
                 platform gedeeld wordt.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-colors hover:bg-white/[0.1]">
               <h3 className="font-display text-lg font-semibold">Teams met de juiste rechten</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
-                Eigenaar, manager of medewerker: iedereen ziet en beheert precies wat bij zijn taak hoort —
-                financiële gegevens blijven waar ze horen.
+                Eigenaar, manager of medewerker: iedereen ziet en beheert precies wat bij zijn taak hoort.
+                Financiële gegevens blijven waar ze horen.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-colors hover:bg-white/[0.1]">
               <h3 className="font-display text-lg font-semibold">Rechtstreekse betalingen</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#c3d6e5]">
                 Je koppelt je eigen betaalaccount. De opbrengst gaat altijd rechtstreeks naar jouw eigen
-                rekening — nooit via een tussenpartij.
+                rekening, nooit via een tussenpartij.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm transition-colors hover:bg-white/[0.1] sm:col-span-2 lg:col-span-1">

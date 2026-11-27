@@ -22,11 +22,11 @@ import BuildConsole from "@/components/websites/BuildConsole";
 import WebsitePackages from "@/components/pricing/WebsitePackages";
 
 export const metadata: Metadata = {
-  title: "Websites op maat — Oravio",
+  title: "Websites op maat | Oravio",
   description:
     "Een professionele website op maat, gebouwd op hetzelfde fundament als het Oravio-platform. Eerst een gratis ontwerpvoorstel, daarna een vaste prijs en jaarlijks zorgeloos beheer.",
   openGraph: {
-    title: "Websites op maat — Oravio",
+    title: "Websites op maat | Oravio",
     description:
       "Professionele websites op maat met jaarlijks beheer. Eerst een gratis ontwerpvoorstel, dan pas beslissen.",
     url: "https://oravio.nl/websites",

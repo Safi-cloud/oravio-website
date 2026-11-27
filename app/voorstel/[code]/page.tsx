@@ -10,7 +10,7 @@ import { vindLive } from "@/lib/voorstellen-live";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Ontwerpvoorstel — Oravio",
+  title: "Ontwerpvoorstel | Oravio",
   robots: { index: false, follow: false },
 };
 

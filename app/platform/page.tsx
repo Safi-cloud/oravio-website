@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Platform — Oravio",
+  title: "Platform | Oravio",
   description:
     "Verkoop, verhuur, betalingen, teambeheer en inzicht in één platform. Ontdek wat Oravio voor jouw onderneming kan betekenen.",
 };
@@ -18,7 +18,7 @@ const GROUPS = [
       },
       {
         title: "Eigen domein, automatisch herkend",
-        body: "Een bezoeker die het domein van een onderneming bezoekt, komt vanzelf in de juiste, eigen omgeving terecht — inclusief het eigen ontwerp en de eigen inhoud.",
+        body: "Een bezoeker die het domein van een onderneming bezoekt, komt vanzelf in de juiste, eigen omgeving terecht, inclusief het eigen ontwerp en de eigen inhoud.",
       },
       {
         title: "Direct beschikbaar tijdens opbouw",
@@ -32,7 +32,7 @@ const GROUPS = [
     items: [
       {
         title: "Volwaardige webshop",
-        body: "Productcatalogus, winkelwagen, kortingscodes, retouren en klantaccounts — een complete verkoopomgeving, zonder losse koppelingen.",
+        body: "Productcatalogus, winkelwagen, kortingscodes, retouren en klantaccounts: een complete verkoopomgeving, zonder losse koppelingen.",
       },
       {
         title: "Verhuur- en reserveringsbeheer",
@@ -40,7 +40,7 @@ const GROUPS = [
       },
       {
         title: "Productimport op schaal",
-        body: "Een bestaande catalogus overzetten via een spreadsheet, inclusief voorraad en productfoto's — geen handmatig overtypen.",
+        body: "Een bestaande catalogus overzetten via een spreadsheet, inclusief voorraad en productfoto's, zonder handmatig overtypen.",
       },
     ],
   },
@@ -50,7 +50,7 @@ const GROUPS = [
     items: [
       {
         title: "Rollen met precieze rechten",
-        body: "Een eigenaar ziet alles, een manager beheert de dagelijkse operatie, een medewerker ziet alleen wat voor zijn taak relevant is — financiële gegevens blijven waar ze horen.",
+        body: "Een eigenaar ziet alles, een manager beheert de dagelijkse operatie, een medewerker ziet alleen wat voor zijn taak relevant is. Financiële gegevens blijven waar ze horen.",
       },
       {
         title: "Activiteitenlog",
@@ -68,11 +68,11 @@ const GROUPS = [
     items: [
       {
         title: "Eigen, afgeschermde analytics",
-        body: "Bezoekersgedrag en conversie worden gemeten binnen de eigen omgeving — nooit gedeeld met of zichtbaar voor een andere onderneming op het platform.",
+        body: "Bezoekersgedrag en conversie worden gemeten binnen de eigen omgeving en nooit gedeeld met of zichtbaar voor een andere onderneming op het platform.",
       },
       {
         title: "Automatische signalering",
-        body: "Groeiende omzet, producten die veel bekeken maar weinig verkocht worden, bijna uitverkochte artikelen — het platform signaleert het zelf.",
+        body: "Groeiende omzet, producten die veel bekeken maar weinig verkocht worden, bijna uitverkochte artikelen: het platform signaleert het zelf.",
       },
       {
         title: "Klantoverzicht",
@@ -94,7 +94,7 @@ const GROUPS = [
       },
       {
         title: "Doordachte toegangscontrole",
-        body: "Elke gevoelige actie wordt zowel in de interface als op de achtergrond gecontroleerd — nooit alleen zichtbaar afgeschermd.",
+        body: "Elke gevoelige actie wordt zowel in de interface als op de achtergrond gecontroleerd, nooit alleen zichtbaar afgeschermd.",
       },
     ],
   },
@@ -110,7 +110,7 @@ export default function PlatformPage() {
             Alles wat je nodig hebt om je onderneming te runnen
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--slate)] md:text-lg">
-            Elk onderdeel van Oravio lost een concreet probleem op — van voorraad die je kwijtraakt tot
+            Elk onderdeel van Oravio lost een concreet probleem op: van voorraad die je kwijtraakt tot
             reserveringen die je nu nog met de hand bijhoudt. Je gebruikt wat je nodig hebt; de rest staat
             klaar voor wanneer je dat wél nodig hebt.
           </p>

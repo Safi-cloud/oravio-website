@@ -3,7 +3,7 @@ import Link from "next/link";
 import CloudField from "@/components/CloudField";
 
 export const metadata: Metadata = {
-  title: "Branches — Oravio",
+  title: "Branches | Oravio",
   description: "Van verhuurbedrijven tot retailers: ontdek hoe Oravio aansluit op jouw branche.",
 };
 
@@ -15,12 +15,12 @@ const INDUSTRIES = [
   },
   {
     title: "E-commerce & retail",
-    body: "Een volledige webshop met voorraadbeheer, kortingsacties en retourenafhandeling — geschikt voor een enkele collectie of een uitgebreide catalogus.",
+    body: "Een volledige webshop met voorraadbeheer, kortingsacties en retourenafhandeling, geschikt voor een enkele collectie of een uitgebreide catalogus.",
     fits: ["Productcatalogus op schaal", "Kortingscodes & acties", "Retourenbeheer"],
   },
   {
     title: "Mode & lifestyle",
-    body: "Visueel sterke presentatie met maat- en kleurvarianten, stijladvies en outfit-aanbevelingen — precies waar deze branche op vertrouwt om te verkopen.",
+    body: "Visueel sterke presentatie met maat- en kleurvarianten, stijladvies en outfit-aanbevelingen, precies waar deze branche op vertrouwt om te verkopen.",
     fits: ["Maat- en kleurbeheer", "Stijl- en outfitadvies", "Aangepaste ontwerpstijlen"],
   },
   {
@@ -45,7 +45,7 @@ export default function BranchesPage() {
             Eén platform, aangepast aan elke branche
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--slate)] md:text-lg">
-            De onderliggende infrastructuur is bewust branchevrij opgebouwd — wat verandert, is welke
+            De onderliggende infrastructuur is bewust branchevrij opgebouwd. Wat verandert, is welke
             onderdelen worden ingeschakeld, en hoe de omgeving eruitziet. Geen maatwerk-traject per
             branche, maar hetzelfde, beproefde fundament.
           </p>
